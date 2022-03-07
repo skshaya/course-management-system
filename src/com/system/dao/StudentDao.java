@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class StudentDao implements CoreRepository {
 
-    public static List<Student> students = new ArrayList<>();
+    public List<Student> students = new ArrayList<>();
 
     public StudentDao() {
         this.getAll();
@@ -28,10 +28,11 @@ public class StudentDao implements CoreRepository {
     }
 
     @Override
-    public void save(Object studentObj) {
+    public Student save(Object studentObj) {
         Student student = new Student();
         setToStudent((Student) studentObj, student);
         students.add(student);
+        return student;
     }
 
     @Override
@@ -42,18 +43,20 @@ public class StudentDao implements CoreRepository {
     }
 
     @Override
-    public void update(Object studentObj) {
+    public Student update(Object studentObj) {
         Student paramObject = (Student) studentObj;
         Student student = students.stream()
                 .filter(std -> std.getId() == paramObject.getId())
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
         setToStudent(paramObject, student);
+        return student;
     }
 
     private void setToStudent(Student studentObj, Student student) {
+        student.setId(studentObj.getId());
         student.setCode(studentObj.getCode());
-        student.setFirstName(studentObj.getCode());
-        student.setLastName(studentObj.getCode());
+        student.setFirstName(studentObj.getFirstName());
+        student.setLastName(studentObj.getLastName());
         student.setAddress(studentObj.getAddress());
         student.setMobile(studentObj.getMobile());
         student.setDob(studentObj.getDob());
