@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.system.test.student;
 
 import com.system.dao.StudentDao;
@@ -12,10 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author ASUS
- */
+
 public class StudentDaoTest {
 
     public static StudentDao studentDao = null;
@@ -43,7 +35,7 @@ public class StudentDaoTest {
         assertEquals("S0004", result.getCode());
         assertEquals("Test FirstName", result.getFirstName());
         assertEquals("Test Address", result.getAddress());
-        assertEquals(4, studentDao.students.size());
+        assertEquals(4, studentDao.getStudentListCount());
     }
 
     @Test
@@ -70,6 +62,6 @@ public class StudentDaoTest {
     @Test
     public void testDelete() {
         studentDao.delete(3);
-        assertEquals(2, studentDao.students.size());
+        assertEquals(2, studentDao.getStudentListCount());
     }
 }

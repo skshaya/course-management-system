@@ -8,6 +8,17 @@ public class Course {
     private double fees;
     private String description;
 
+    public Course() {
+    }
+
+    public Course(int id, String code, String name, double fees, String description) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.fees = fees;
+        this.description = description;
+    }
+
     /**
      * @return the id
      */

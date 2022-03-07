@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class StudentDao implements CoreRepository {
 
-    public List<Student> students = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
 
     public StudentDao() {
         this.getAll();
@@ -66,5 +66,10 @@ public class StudentDao implements CoreRepository {
     @Override
     public void delete(int id) {
         students.removeIf(student -> student.getId() == id);
+    }
+    
+    public int getStudentListCount()
+    {
+        return this.students.size();
     }
 }
