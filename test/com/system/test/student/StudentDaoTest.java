@@ -35,7 +35,7 @@ public class StudentDaoTest {
         assertEquals("S0004", result.getCode());
         assertEquals("Test FirstName", result.getFirstName());
         assertEquals("Test Address", result.getAddress());
-        assertEquals(4, studentDao.getStudentListCount());
+        assertEquals(4, studentDao.getTotal());
     }
 
     @Test
@@ -62,6 +62,6 @@ public class StudentDaoTest {
     @Test
     public void testDelete() {
         studentDao.delete(3);
-        assertEquals(2, studentDao.getStudentListCount());
+        assertEquals(2, studentDao.getTotal());
     }
 }

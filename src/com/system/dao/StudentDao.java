@@ -1,5 +1,6 @@
 package com.system.dao;
 
+import com.system.core.CoreCollectionRepository;
 import com.system.core.CoreRepository;
 import com.system.model.Student;
 import com.system.utils.Constant;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class StudentDao implements CoreRepository {
+public class StudentDao extends CoreCollectionRepository implements CoreRepository {
 
     private List<Student> students = new ArrayList<>();
 
@@ -68,7 +69,8 @@ public class StudentDao implements CoreRepository {
         students.removeIf(student -> student.getId() == id);
     }
     
-    public int getStudentListCount()
+    @Override
+    public int getTotal()
     {
         return this.students.size();
     }

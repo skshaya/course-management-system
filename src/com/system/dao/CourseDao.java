@@ -1,5 +1,6 @@
 package com.system.dao;
 
+import com.system.core.CoreCollectionRepository;
 import com.system.core.CoreRepository;
 import com.system.model.Course;
 import com.system.utils.Constant;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class CourseDao implements CoreRepository {
+public class CourseDao extends CoreCollectionRepository implements CoreRepository {
 
     private List<Course> courses = new ArrayList<>();
 
@@ -64,7 +65,8 @@ public class CourseDao implements CoreRepository {
         course.setDescription(courseObj.getDescription());
     }
     
-     public int getCourseCount()
+    @Override
+    public int getTotal()
     {
         return this.courses.size();
     }
