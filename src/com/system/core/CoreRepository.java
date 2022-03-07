@@ -1,7 +1,5 @@
-
 package com.system.core;
 
-import com.system.model.Student;
 import java.util.List;
 
 public interface CoreRepository {

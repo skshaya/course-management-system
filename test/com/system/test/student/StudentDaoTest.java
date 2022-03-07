@@ -8,10 +8,7 @@ package com.system.test.student;
 import com.system.dao.StudentDao;
 import com.system.model.Student;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -20,27 +17,26 @@ import static org.junit.Assert.*;
  * @author ASUS
  */
 public class StudentDaoTest {
-    
+
     public static StudentDao studentDao = null;
+
     public StudentDaoTest() {
     }
-    
+
     @Before
     public void setUp() {
         studentDao = new StudentDao();
     }
-    
+
     @Test
-    public void testGetAll()
-    {
+    public void testGetAll() {
         List<Student> studentList = studentDao.getAll();
         assertEquals(3, studentList.size());
         assertTrue(studentList.get(0) instanceof Student);
     }
-    
+
     @Test
-    public void testSave()
-    {
+    public void testSave() {
         Student result = studentDao.save(new Student(10, "S0004", "Test FirstName", "Test LastName", "Test Address", "0211239685", "1990-04-01", "desc"));
         assertTrue(result instanceof Student);
         assertEquals(10, result.getId());
@@ -49,10 +45,9 @@ public class StudentDaoTest {
         assertEquals("Test Address", result.getAddress());
         assertEquals(4, studentDao.students.size());
     }
-    
+
     @Test
-    public void testGetOne()
-    {
+    public void testGetOne() {
         Student result = studentDao.getOne(1);
         assertTrue(result instanceof Student);
         assertEquals(1, result.getId());
@@ -61,10 +56,9 @@ public class StudentDaoTest {
         assertEquals("Ramesh", result.getFirstName());
         assertEquals("Nallur", result.getAddress());
     }
-    
-     @Test
-    public void testUpdate()
-    {
+
+    @Test
+    public void testUpdate() {
         Student result = studentDao.update(new Student(1, "S0001", "Updated", "Ram", "Nallur", "0771234567", "1990-01-01", "desc"));
         assertTrue(result instanceof Student);
         assertEquals(1, result.getId());
@@ -72,10 +66,9 @@ public class StudentDaoTest {
         assertNotEquals("Ramesh", result.getFirstName());
         assertEquals("Updated", result.getFirstName());
     }
-    
-     @Test
-    public void testDelete()
-    {
+
+    @Test
+    public void testDelete() {
         studentDao.delete(3);
         assertEquals(2, studentDao.students.size());
     }
