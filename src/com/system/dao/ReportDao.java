@@ -11,7 +11,8 @@ public class ReportDao implements CoreReportRepository {
         return BookingAvailabilityDao
                 .getAllBookingAvailabilityList()
                 .stream()
-                .filter(availability -> availability.getDate().equals(Date))
+                .filter(availability -> availability.getDate().equals(Date)
+                && availability.getAvailability() != 0)
                 .collect(Collectors.toList());
     }
 
@@ -20,7 +21,8 @@ public class ReportDao implements CoreReportRepository {
         return BookingAvailabilityDao
                 .getAllBookingAvailabilityList()
                 .stream()
-                .filter(availability -> availability.getGroupId() == groupId)
+                .filter(availability -> availability.getGroupId() == groupId
+                && availability.getAvailability() != 0)
                 .collect(Collectors.toList());
     }
 
@@ -29,7 +31,8 @@ public class ReportDao implements CoreReportRepository {
         return BookingAvailabilityDao
                 .getAllBookingAvailabilityList()
                 .stream()
-                .filter(availability -> availability.getDivisionId() == divisionId)
+                .filter(availability -> availability.getDivisionId() == divisionId
+                && availability.getAvailability() != 0)
                 .collect(Collectors.toList());
     }
 
@@ -38,7 +41,8 @@ public class ReportDao implements CoreReportRepository {
         return BookingAvailabilityDao
                 .getAllBookingAvailabilityList()
                 .stream()
-                .filter(availability -> availability.getCourseId() == courseId)
+                .filter(availability -> availability.getCourseId() == courseId
+                && availability.getAvailability() != 0)
                 .collect(Collectors.toList());
     }
 
@@ -47,7 +51,9 @@ public class ReportDao implements CoreReportRepository {
         return BookingAvailabilityDao
                 .getAllBookingAvailabilityList()
                 .stream()
-                .filter(availability -> availability.getDivisionId() == divisionId && availability.getGroupId() == groupId)
+                .filter(availability -> availability.getDivisionId() == divisionId
+                && availability.getGroupId() == groupId
+                && availability.getAvailability() != 0)
                 .collect(Collectors.toList());
     }
 
@@ -56,7 +62,9 @@ public class ReportDao implements CoreReportRepository {
         return BookingAvailabilityDao
                 .getAllBookingAvailabilityList()
                 .stream()
-                .filter(availability -> availability.getDivisionId() == divisionId && availability.getCourseId() == courseId)
+                .filter(availability -> availability.getDivisionId() == divisionId
+                && availability.getCourseId() == courseId
+                && availability.getAvailability() != 0)
                 .collect(Collectors.toList());
     }
 
@@ -68,7 +76,7 @@ public class ReportDao implements CoreReportRepository {
                 .filter(availability -> availability.getDate().equals(divisionId)
                 && availability.getGroupId() == groupId
                 && availability.getDivisionId() == divisionId
-                && availability.getCourseId() == courseId)
+                && availability.getCourseId() == courseId && availability.getAvailability() != 0)
                 .collect(Collectors.toList());
     }
 }
