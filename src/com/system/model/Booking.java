@@ -7,7 +7,7 @@ public class Booking {
     private int divisionId;
     private int groupId;
     private double amount;
-    private int paymentId;
+    private int paymentMasterId;
     private String description;
 
     /**
@@ -81,17 +81,17 @@ public class Booking {
     }
 
     /**
-     * @return the paymentId
+     * @return the paymentMasterId
      */
-    public int getPaymentId() {
-        return paymentId;
+    public int getPaymentMasterId() {
+        return paymentMasterId;
     }
 
     /**
-     * @param paymentId the paymentId to set
+     * @param paymentMasterId the paymentMasterId to set
      */
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setPaymentMasterId(int paymentMasterId) {
+        this.paymentMasterId = paymentMasterId;
     }
 
     /**

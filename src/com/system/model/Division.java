@@ -7,6 +7,16 @@ public class Division {
     private String name; // Sat || Sun
     private String description;
 
+    public Division() {
+    }
+
+    public Division(int id, String code, String name, String description) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.description = description;
+    }
+
     /**
      * @return the id
      */

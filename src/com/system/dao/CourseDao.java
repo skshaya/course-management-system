@@ -20,11 +20,12 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
 
     @Override
     public List<?> getAll() {
-        return Stream.of(
+        courses =  Stream.of(
                 new Course(1, "C0001", "Karate", 1000.00, "Desc"),
                 new Course(2, "C0002", "Yoha", 2000.00, "Desc"),
                 new Course(3, "C0003", "Medit", 30000.00, "Desc"))
                 .collect(Collectors.toList());
+        return courses;
     }
 
     @Override
