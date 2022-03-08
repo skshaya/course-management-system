@@ -1,4 +1,3 @@
-
 package com.system.model;
 
 public class BookingAvailability {
@@ -8,6 +7,17 @@ public class BookingAvailability {
     private int groupId;
     private int courseId;
     private int availability;
+
+    public BookingAvailability() {
+    }
+
+    public BookingAvailability(String date, int divisionId, int groupId, int courseId, int availability) {
+        this.date = date;
+        this.divisionId = divisionId;
+        this.groupId = groupId;
+        this.courseId = courseId;
+        this.availability = availability;
+    }
 
     /**
      * @return the date

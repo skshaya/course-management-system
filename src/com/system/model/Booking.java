@@ -7,8 +7,23 @@ public class Booking {
     private int divisionId;
     private int groupId;
     private double amount;
+    private String status;
     private int paymentMasterId;
     private String description;
+
+    public Booking() {
+    }
+
+    public Booking(int id, int studentId, int divisionId, int groupId, double amount, String status, int paymentMasterId, String description) {
+        this.id = id;
+        this.studentId = studentId;
+        this.divisionId = divisionId;
+        this.groupId = groupId;
+        this.amount = amount;
+        this.status = status;
+        this.paymentMasterId = paymentMasterId;
+        this.description = description;
+    }
 
     /**
      * @return the id
@@ -78,6 +93,20 @@ public class Booking {
      */
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**
