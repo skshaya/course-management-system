@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.system.model;
 
-/**
- *
- * @author ASUS
- */
 public class Rating {
 
     private int id;
@@ -17,6 +8,18 @@ public class Rating {
     private int star;
     private String date;
     private String description;
+
+    public Rating() {
+    }
+
+    public Rating(int id, int studentId, int bookingId, int star, String date, String description) {
+        this.id = id;
+        this.studentId = studentId;
+        this.bookingId = bookingId;
+        this.star = star;
+        this.date = date;
+        this.description = description;
+    }
 
     /**
      * @return the id

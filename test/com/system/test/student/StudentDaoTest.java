@@ -29,7 +29,7 @@ public class StudentDaoTest {
 
     @Test
     public void testSave() {
-        Student result = studentDao.save(new Student(10, "S0004", "Test FirstName", "Test LastName", "Test Address", "0211239685", "1990-04-01", "desc"));
+        Student result = studentDao.save(new Student(10, "S0004", "Test FirstName", "Test LastName", "Test Address", "0211239685", "1990-04-01", "user","admin","desc"));
         assertTrue(result instanceof Student);
         assertEquals(10, result.getId());
         assertEquals("S0004", result.getCode());
@@ -51,7 +51,7 @@ public class StudentDaoTest {
 
     @Test
     public void testUpdate() {
-        Student result = studentDao.update(new Student(1, "S0001", "Updated", "Ram", "Nallur", "0771234567", "1990-01-01", "desc"));
+        Student result = studentDao.update(new Student(1, "S0001", "Updated", "Ram", "Nallur", "0771234567", "1990-01-01", "admin","admin","desc"));
         assertTrue(result instanceof Student);
         assertEquals(1, result.getId());
         assertEquals("S0001", result.getCode());
@@ -63,5 +63,17 @@ public class StudentDaoTest {
     public void testDelete() {
         studentDao.delete(3);
         assertEquals(2, studentDao.getTotal());
+    }
+    
+     @Test
+    public void testAuth() {
+        boolean isAuthenticated = studentDao.authenticate("Ramesh","1234");
+        assertTrue(isAuthenticated);
+    }
+    
+     @Test
+    public void testInvalidAuth() {
+        boolean isAuthenticated = studentDao.authenticate("user","1234");
+        assertFalse(isAuthenticated);
     }
 }

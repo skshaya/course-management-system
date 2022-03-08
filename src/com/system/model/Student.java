@@ -9,12 +9,14 @@ public class Student {
     private String address;
     private String mobile;
     private String dob;
+    private String username;
+    private String password;
     private String description;
 
     public Student() {
     }
 
-    public Student(int id, String code, String firstName, String lastName, String address, String mobile, String dob, String description) {
+    public Student(int id, String code, String firstName, String lastName, String address, String mobile, String dob, String username, String password, String description) {
         this.id = id;
         this.code = code;
         this.firstName = firstName;
@@ -22,6 +24,8 @@ public class Student {
         this.address = address;
         this.mobile = mobile;
         this.dob = dob;
+        this.username = username;
+        this.password = password;
         this.description = description;
     }
 
@@ -123,7 +127,35 @@ public class Student {
     public void setDob(String dob) {
         this.dob = dob;
     }
+    
+     /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
 
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     /**
      * @return the description
      */

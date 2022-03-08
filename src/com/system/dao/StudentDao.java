@@ -21,9 +21,9 @@ public class StudentDao extends CoreCollectionRepository implements CoreReposito
     @Override
     public List<Student> getAll() {
         students = Stream.of(
-                new Student(1, "S0001", "Ramesh", "Ram", "Nallur", "0771234567", "1990-01-01", "desc"),
-                new Student(2, "S0002", "Kapputas", "Plane", "Nallur", "0779234567", "1993-05-23", "desc"),
-                new Student(3, "S0003", "Ajith", "AK", "Nallur", "0779233567", "1993-12-19", "desc"))
+                new Student(1, "S0001", "Ramesh", "Ram", "Nallur", "0771234567", "1990-01-01", "Ramesh", "1234", "desc"),
+                new Student(2, "S0002", "Kapputas", "Plane", "Nallur", "0779234567", "1993-05-23", "Kapputas", "1234d", "desc"),
+                new Student(3, "S0003", "Ajith", "AK", "Nallur", "0779233567", "1993-12-19", "Ajith", "1234d", "desc"))
                 .collect(Collectors.toList());
         return students;
     }
@@ -61,6 +61,8 @@ public class StudentDao extends CoreCollectionRepository implements CoreReposito
         student.setAddress(studentObj.getAddress());
         student.setMobile(studentObj.getMobile());
         student.setDob(studentObj.getDob());
+        student.setUsername(studentObj.getUsername());
+        student.setPassword(studentObj.getPassword());
         student.setDescription(studentObj.getDescription());
     }
 
@@ -68,10 +70,16 @@ public class StudentDao extends CoreCollectionRepository implements CoreReposito
     public void delete(int id) {
         students.removeIf(student -> student.getId() == id);
     }
-    
+
     @Override
-    public int getTotal()
-    {
+    public int getTotal() {
         return this.students.size();
+    }
+    
+    public boolean authenticate(String username, String password)
+    {
+        return students.stream()
+                .filter(student -> student.getUsername().equals(username) && student.getPassword().equals(password))
+                .findFirst().isPresent();
     }
 }
