@@ -14,13 +14,9 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
 
     private static List<Course> courses = new ArrayList<>();
 
-    public CourseDao() {
-        this.getAll();
-    }
-
     @Override
     public List<?> getAll() {
-        courses =  Stream.of(
+        courses = Stream.of(
                 new Course(1, "C0001", "Karate", 1000.00, "Desc"),
                 new Course(2, "C0002", "Yoha", 2000.00, "Desc"),
                 new Course(3, "C0003", "Medit", 30000.00, "Desc"))
@@ -63,14 +59,13 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
         course.setFees(courseObj.getFees());
         course.setDescription(courseObj.getDescription());
     }
-    
+
     @Override
-    public int getTotal()
-    {
+    public int getTotal() {
         return CourseDao.courses.size();
     }
-    
-     public static Course findById(int id) {
+
+    public static Course findById(int id) {
         return CourseDao.courses
                 .stream()
                 .filter(course -> course.getId() == id)

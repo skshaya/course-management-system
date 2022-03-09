@@ -12,11 +12,7 @@ import java.util.stream.Stream;
 
 public class RatingDao extends CoreCollectionRepository implements CoreRepository {
 
-    private List<Rating> ratings = new ArrayList<>();
-
-    public RatingDao() {
-        this.getAll();
-    }
+    private static List<Rating> ratings = new ArrayList<>();
 
     @Override
     public List<?> getAll() {
@@ -55,7 +51,7 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
 
     @Override
     public void delete(int id) {
-         ratings.removeIf(course -> course.getId() == id);
+        ratings.removeIf(course -> course.getId() == id);
     }
 
     private void setToRating(Rating ratingObj, Rating rating) {
@@ -69,6 +65,6 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
 
     @Override
     public int getTotal() {
-       return this.ratings.size();
+        return this.ratings.size();
     }
 }

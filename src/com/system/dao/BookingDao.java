@@ -13,10 +13,6 @@ public class BookingDao implements CoreRepository {
 
     private static List<Booking> bookings = new ArrayList<>();
 
-    public BookingDao() {
-        this.getAll();
-    }
-
     @Override
     public List<?> getAll() {
         bookings = Stream.of(

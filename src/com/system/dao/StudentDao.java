@@ -2,21 +2,19 @@ package com.system.dao;
 
 import com.system.core.CoreCollectionRepository;
 import com.system.core.CoreRepository;
+import com.system.dto.AuthDto;
 import com.system.model.Student;
 import com.system.utils.Constant;
 import com.system.utils.ResourceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StudentDao extends CoreCollectionRepository implements CoreRepository {
 
-    private List<Student> students = new ArrayList<>();
-
-    public StudentDao() {
-        this.getAll();
-    }
+    private static List<Student> students = new ArrayList<>();
 
     @Override
     public List<Student> getAll() {
@@ -73,13 +71,22 @@ public class StudentDao extends CoreCollectionRepository implements CoreReposito
 
     @Override
     public int getTotal() {
-        return this.students.size();
+        return StudentDao.students.size();
     }
-    
-    public boolean authenticate(String username, String password)
-    {
-        return students.stream()
-                .filter(student -> student.getUsername().equals(username) && student.getPassword().equals(password))
-                .findFirst().isPresent();
+
+    public static AuthDto authenticate(String username, String password) {
+        AuthDto authDto = null;
+        Optional<Student> student = students.stream()
+                .filter(std -> std.getUsername().equals(username) && std.getPassword().equals(password))
+                .findFirst();
+        if (student.isPresent()) {
+            System.out.println("Logged In");
+            authDto = new AuthDto(student.get(), true);
+        }
+        else{
+             System.out.println("Failed");
+            authDto = new AuthDto(new Student(), false);
+        }
+        return authDto;
     }
 }

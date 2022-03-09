@@ -1,6 +1,7 @@
 package com.system.test.student;
 
 import com.system.dao.StudentDao;
+import com.system.dto.AuthDto;
 import com.system.model.Student;
 import java.util.List;
 import org.junit.Before;
@@ -18,6 +19,7 @@ public class StudentDaoTest {
     @Before
     public void setUp() {
         studentDao = new StudentDao();
+        studentDao.getAll();
     }
 
     @Test
@@ -67,13 +69,13 @@ public class StudentDaoTest {
     
      @Test
     public void testAuth() {
-        boolean isAuthenticated = studentDao.authenticate("Ramesh","1234");
-        assertTrue(isAuthenticated);
+        AuthDto authDto = studentDao.authenticate("Ramesh","1234");
+        assertTrue(authDto.isIsAuthenticated());
     }
     
      @Test
     public void testInvalidAuth() {
-        boolean isAuthenticated = studentDao.authenticate("user","1234");
-        assertFalse(isAuthenticated);
+         AuthDto authDto = studentDao.authenticate("user","1234");
+        assertFalse(authDto.isIsAuthenticated());
     }
 }

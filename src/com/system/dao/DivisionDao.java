@@ -13,10 +13,6 @@ public class DivisionDao extends CoreCollectionRepository {
 
     private static List<Division> divisions = new ArrayList<>();
 
-    public DivisionDao() {
-        this.getAll();
-    }
-
     @Override
     public List<Division> getAll() {
         divisions = Stream.of(

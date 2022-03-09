@@ -4,7 +4,7 @@ import com.system.core.CoreReportRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ReportDao implements CoreReportRepository {
+public class BookingAvailabilityReportDao implements CoreReportRepository {
 
     @Override
     public List<?> filterByDate(String Date) {

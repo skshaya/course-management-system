@@ -13,10 +13,6 @@ public class GroupDao extends CoreCollectionRepository {
 
     private static List<Group> groups = new ArrayList<>();
 
-    public GroupDao() {
-        this.getAll();
-    }
-
     @Override
     public List<Group> getAll() {
         groups = Stream.of(
@@ -31,9 +27,9 @@ public class GroupDao extends CoreCollectionRepository {
     public int getTotal() {
         return GroupDao.groups.size();
     }
-    
-    public static Group findById(int id){
-     return GroupDao.groups
+
+    public static Group findById(int id) {
+        return GroupDao.groups
                 .stream()
                 .filter(group -> group.getId() == id)
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));

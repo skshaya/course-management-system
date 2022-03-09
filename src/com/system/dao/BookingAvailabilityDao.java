@@ -11,10 +11,6 @@ public class BookingAvailabilityDao extends CoreCollectionRepository {
 
     private static List<BookingAvailability> bookingAvailabilityList = new ArrayList<>();
 
-    public BookingAvailabilityDao() {
-        this.getAll();
-    }
-
     @Override
     public int getTotal() {
         return bookingAvailabilityList.size();
@@ -30,10 +26,8 @@ public class BookingAvailabilityDao extends CoreCollectionRepository {
                 .collect(Collectors.toList());
         return bookingAvailabilityList;
     }
-    
-    public static List<BookingAvailability> getAllBookingAvailabilityList()
-    {
+
+    public static List<BookingAvailability> getAllBookingAvailabilityList() {
         return BookingAvailabilityDao.bookingAvailabilityList;
     }
 }
-  
