@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 public class CourseDao extends CoreCollectionRepository implements CoreRepository {
 
-    private List<Course> courses = new ArrayList<>();
+    private static List<Course> courses = new ArrayList<>();
 
     public CourseDao() {
         this.getAll();
@@ -38,9 +38,7 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
 
     @Override
     public Course getOne(int id) {
-        return courses.stream()
-                .filter(course -> course.getId() == id)
-                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
+        return findById(id);
     }
 
     @Override
@@ -69,6 +67,13 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
     @Override
     public int getTotal()
     {
-        return this.courses.size();
+        return CourseDao.courses.size();
+    }
+    
+     public static Course findById(int id) {
+        return CourseDao.courses
+                .stream()
+                .filter(course -> course.getId() == id)
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 }

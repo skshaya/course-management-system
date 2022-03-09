@@ -1,8 +1,9 @@
 package com.system.dao;
 
 import com.system.core.CoreCollectionRepository;
-import com.system.core.CoreRepository;
 import com.system.model.Group;
+import com.system.utils.Constant;
+import com.system.utils.ResourceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import java.util.stream.Stream;
 
 public class GroupDao extends CoreCollectionRepository {
 
-    private List<Group> groups = new ArrayList<>();
+    private static List<Group> groups = new ArrayList<>();
 
     public GroupDao() {
         this.getAll();
@@ -28,6 +29,13 @@ public class GroupDao extends CoreCollectionRepository {
 
     @Override
     public int getTotal() {
-        return this.groups.size();
+        return GroupDao.groups.size();
+    }
+    
+    public static Group findById(int id){
+     return GroupDao.groups
+                .stream()
+                .filter(group -> group.getId() == id)
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 }

@@ -2,6 +2,8 @@ package com.system.dao;
 
 import com.system.core.CoreCollectionRepository;
 import com.system.model.Division;
+import com.system.utils.Constant;
+import com.system.utils.ResourceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,7 +11,7 @@ import java.util.stream.Stream;
 
 public class DivisionDao extends CoreCollectionRepository {
 
-    private List<Division> divisions = new ArrayList<>();
+    private static List<Division> divisions = new ArrayList<>();
 
     public DivisionDao() {
         this.getAll();
@@ -26,6 +28,13 @@ public class DivisionDao extends CoreCollectionRepository {
 
     @Override
     public int getTotal() {
-        return this.divisions.size();
+        return DivisionDao.divisions.size();
+    }
+
+    public static Division findById(int id) {
+        return DivisionDao.divisions
+                .stream()
+                .filter(division -> division.getId() == id)
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 }

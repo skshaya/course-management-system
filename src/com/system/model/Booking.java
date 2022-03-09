@@ -6,6 +6,7 @@ public class Booking {
     private int studentId;
     private int divisionId;
     private int groupId;
+    private int courseId;
     private double amount;
     private String status;
     private int paymentMasterId;
@@ -14,11 +15,12 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(int id, int studentId, int divisionId, int groupId, double amount, String status, int paymentMasterId, String description) {
+    public Booking(int id, int studentId, int divisionId, int groupId, int courseId, double amount, String status, int paymentMasterId, String description) {
         this.id = id;
         this.studentId = studentId;
         this.divisionId = divisionId;
         this.groupId = groupId;
+        this.courseId = courseId;
         this.amount = amount;
         this.status = status;
         this.paymentMasterId = paymentMasterId;
@@ -81,6 +83,20 @@ public class Booking {
         this.groupId = groupId;
     }
 
+    /**
+     * @return the courseId
+     */
+    public int getCourseId() {
+        return courseId;
+    }
+
+    /**
+     * @param courseId the courseId to set
+     */
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+    
     /**
      * @return the amount
      */

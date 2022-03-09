@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/com/system/dao/BookingAvailabilityDao.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>9</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/Interview/Assignments/cms/src/com/system/dao/StudentDao.java</file>
-            <file>file:/H:/Interview/Assignments/cms/src/com/system/model/Group.java</file>
+            <file>file:/H:/Interview/Assignments/cms/src/com/system/model/Rating.java</file>
             <file>file:/H:/Interview/Assignments/cms/src/com/system/dao/GroupDao.java</file>
+            <file>file:/H:/Interview/Assignments/cms/src/com/system/dao/RatingDao.java</file>
             <file>file:/H:/Interview/Assignments/cms/src/com/system/dao/DivisionDao.java</file>
-            <file>file:/H:/Interview/Assignments/cms/src/com/system/dao/CourseDao.java</file>
-            <file>file:/H:/Interview/Assignments/cms/src/com/system/model/Division.java</file>
         </group>
     </open-files>
 </project-private>
