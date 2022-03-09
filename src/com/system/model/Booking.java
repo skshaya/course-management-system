@@ -25,7 +25,7 @@ public class Booking {
         this.status = status;
         this.paymentMasterId = paymentMasterId;
         this.description = description;
-    }
+    } 
 
     /**
      * @return the id

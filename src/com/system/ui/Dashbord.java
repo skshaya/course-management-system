@@ -26,6 +26,7 @@ public class Dashbord extends javax.swing.JFrame {
      */
     public Dashbord() {
         initComponents();
+        System.out.println(Constant.studentName);
         jLabel1.setText(Constant.studentName);
         setLocationRelativeTo(null);
 
@@ -66,6 +67,7 @@ public class Dashbord extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setToolTipText("");
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton1.setText("Student");
@@ -112,7 +114,7 @@ public class Dashbord extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(275, 275, 275))
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +159,8 @@ public class Dashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        BookingCourse bookingCourse =new BookingCourse();
+        bookingCourse.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -21,12 +21,12 @@ public class BookingNormalizer {
 
         for (Booking booking : bookingList) {
             BookingDto bookingDto = new BookingDto();
-            int divisionId = BookingDao.findBookingById(booking.getId()).getDivisionId();
-            int groupId = BookingDao.findBookingById(booking.getId()).getGroupId();
-            int courseId = BookingDao.findBookingById(booking.getId()).getCourseId();
+            int divisionId = booking.getDivisionId();
+            int groupId = booking.getGroupId();
+            int courseId = booking.getCourseId();
 
-            String groupName = GroupDao.findById(groupId).getName();
             String divisionName = DivisionDao.findById(divisionId).getName();
+            String groupName = GroupDao.findById(groupId).getName();
             String coursename = CourseDao.findById(courseId).getName();
 
             bookingDto.setBookingId(booking.getId());

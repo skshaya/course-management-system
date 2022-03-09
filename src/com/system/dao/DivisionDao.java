@@ -16,8 +16,8 @@ public class DivisionDao extends CoreCollectionRepository {
     @Override
     public List<Division> getAll() {
         divisions = Stream.of(
-                new Division(1, "DIV001", "SATURDAY", "Desc"),
-                new Division(2, "DIV002", "SUNDAY", "Desc"))
+                new Division(1, "DIV001", "Saturday", "Desc"),
+                new Division(2, "DIV002", "Sunday", "Desc"))
                 .collect(Collectors.toList());
         return divisions;
     }
@@ -32,5 +32,9 @@ public class DivisionDao extends CoreCollectionRepository {
                 .stream()
                 .filter(division -> division.getId() == id)
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
+    }
+
+    public static List<Division> loadToComboBox() {
+        return DivisionDao.divisions;
     }
 }

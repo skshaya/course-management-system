@@ -87,9 +87,9 @@ public class Login extends javax.swing.JFrame {
         AuthDto authDto = StudentDao.authenticate(userName, password);
         if (authDto.isIsAuthenticated()) {
             JOptionPane.showMessageDialog(this, Constant.LOGIN_SUCCESS, Constant.LOGIN, JOptionPane.INFORMATION_MESSAGE);
-            Dashbord dashbord = new Dashbord();
             Constant.studentId = authDto.getStudent().getId();
             Constant.studentName = authDto.getStudent().getFirstName() + " " + authDto.getStudent().getLastName();
+            Dashbord dashbord = new Dashbord();
             this.setVisible(false);
             dashbord.setVisible(true);
         } else {

@@ -33,7 +33,10 @@ public class BookingDao implements CoreRepository {
 
     @Override
     public Booking getOne(int id) {
-        return findBookingById(id);
+         return BookingDao.bookings
+                .stream()
+                .filter(booking -> booking.getId() == id)
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 
     @Override
@@ -65,12 +68,5 @@ public class BookingDao implements CoreRepository {
 
     public static List<Booking> getAllBookingList() {
         return BookingDao.bookings;
-    }
-
-    public static Booking findBookingById(int id) {
-        return BookingDao.bookings
-                .stream()
-                .filter(booking -> booking.getId() == id)
-                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 }

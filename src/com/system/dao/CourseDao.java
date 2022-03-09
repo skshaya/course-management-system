@@ -17,9 +17,11 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
     @Override
     public List<?> getAll() {
         courses = Stream.of(
-                new Course(1, "C0001", "Karate", 1000.00, "Desc"),
-                new Course(2, "C0002", "Yoha", 2000.00, "Desc"),
-                new Course(3, "C0003", "Medit", 30000.00, "Desc"))
+                new Course(1, "C0001", "Yoha", 1000.00, "Desc"),
+                new Course(2, "C0002", "Zumba", 2000.00, "Desc"),
+                new Course(3, "C0003", "Aquacise", 3000.00, "Desc"),
+                new Course(4, "C0004", "Box Fit", 3500.00, "Desc"),
+                new Course(5, "C0005", "Body Bliz", 4000.00, "Desc"))
                 .collect(Collectors.toList());
         return courses;
     }
@@ -70,5 +72,9 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
                 .stream()
                 .filter(course -> course.getId() == id)
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
+    }
+
+    public static List<Course> loadToComboBox() {
+        return CourseDao.courses;
     }
 }
