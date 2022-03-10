@@ -5,17 +5,23 @@
  */
 package com.system.ui;
 
+import com.google.gson.Gson;
+import com.system.dao.BookingAvailabilityDao;
 import com.system.dao.BookingAvailabilityReportDao;
+import com.system.dao.BookingDao;
 import com.system.dao.CourseDao;
 import com.system.dao.DivisionDao;
 import com.system.dao.GroupDao;
 import com.system.dto.BookingAvailabilityDto;
+import com.system.model.Booking;
 import com.system.model.Course;
 import com.system.model.Division;
 import com.system.model.Group;
+import com.system.utils.Constant;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -68,28 +74,39 @@ public class BookingCourse extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
+        bookingId = new javax.swing.JTextField();
+        studentId = new javax.swing.JTextField();
+        division = new javax.swing.JTextField();
+        group = new javax.swing.JTextField();
+        course = new javax.swing.JTextField();
+        amount = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        desc = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 180, 52));
 
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 180, 52));
-
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 209, 53));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("Search");
@@ -98,22 +115,23 @@ public class BookingCourse extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 40, 90, 30));
 
         jDateChooser2.setDateFormatString("yyyy-MMM-dd");
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 50, 180, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Date", "Division", "Group", "Course", "Availability"
+                "Date", "Division", "Group", "Course", "Availability", "Amount"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 1010, 100));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setText("Clear");
@@ -122,23 +140,177 @@ public class BookingCourse extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 70, 90, 30));
+
+        bookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bookingId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingIdActionPerformed(evt);
+            }
+        });
+
+        studentId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        division.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        group.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        course.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        amount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        amount.setToolTipText("");
+
+        desc.setColumns(20);
+        desc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        desc.setRows(5);
+        jScrollPane2.setViewportView(desc);
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton3.setText("Book Now");
+        jButton3.setToolTipText("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Booking ID");
+        jLabel1.setToolTipText("");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Student ID");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Division");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Group");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Course");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setText("Amount");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Description");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)
+                                .addComponent(bookingId, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jLabel2)
+                                    .addGap(60, 60, 60)
+                                    .addComponent(jLabel3)
+                                    .addGap(109, 109, 109)
+                                    .addComponent(jLabel4)
+                                    .addGap(104, 104, 104)
+                                    .addComponent(jLabel5)
+                                    .addGap(111, 111, 111)
+                                    .addComponent(jLabel6)
+                                    .addGap(41, 41, 41))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(studentId, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(group, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(course, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButton3))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(43, 43, 43)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(97, 97, 97))))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookingId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(group, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(course, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -153,7 +325,6 @@ public class BookingCourse extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         String date = null;
         BookingAvailabilityReportDao bookingAvailabilityReportDao = new BookingAvailabilityReportDao();
         List<BookingAvailabilityDto> bookingAvailabilityDto = new ArrayList<>();
@@ -177,10 +348,10 @@ public class BookingCourse extends javax.swing.JFrame {
                 : 0;
 
         int courseId = courseName.equals("Yoha") ? 1
-                : (groupName.equals("Zumba")) ? 2
-                : (groupName.equals("Aquacise")) ? 3
-                : (groupName.equals("Box Fit")) ? 4
-                : (groupName.equals("Box Fit")) ? 5
+                : (courseName.equals("Zumba")) ? 2
+                : (courseName.equals("Aquacise")) ? 3
+                : (courseName.equals("Box Fit")) ? 4
+                : (courseName.equals("Box Fit")) ? 5
                 : 0;
 
         if (date != null && groupName.equals("Select") && courseName.equals("Select") && divisionName.equals("Select")) {
@@ -198,33 +369,95 @@ public class BookingCourse extends javax.swing.JFrame {
         } else if (date == null && !groupName.equals("Select") && !courseName.equals("Select") && !divisionName.equals("Select")) {
             bookingAvailabilityDto = bookingAvailabilityReportDao.filterByDivisionAndGroupAndCourse(divisionId, groupId, courseId);
         } else if (date != null && !groupName.equals("Select") && !courseName.equals("Select") && !divisionName.equals("Select")) {
-            System.out.println(date);
-            bookingAvailabilityDto = bookingAvailabilityReportDao.filterByAll(date, groupId, divisionId, courseId);
+            bookingAvailabilityDto = bookingAvailabilityReportDao.filterByAll(date, divisionId, groupId, courseId);
         }
 
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[5];
+        Object rowData[] = new Object[6];
         for (int i = 0; i < bookingAvailabilityDto.size(); i++) {
             rowData[0] = bookingAvailabilityDto.get(i).getDate();
             rowData[1] = bookingAvailabilityDto.get(i).getDivisionName();
             rowData[2] = bookingAvailabilityDto.get(i).getGroupName();
             rowData[3] = bookingAvailabilityDto.get(i).getCourseName();
             rowData[4] = bookingAvailabilityDto.get(i).getAvailability();
+            rowData[5] = bookingAvailabilityDto.get(i).getAmount();
             defaultTableModel.addRow(rowData);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        clearTable();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void bookingIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingIdActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_bookingIdActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(null, "Do You Really Want to Confirm Booking", "Booking Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == 0) {
+            int nextBookingId = BookingDao.getAllBookingList().size() + 1;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(jDateChooser2.getDate());
+        
+            String diviSonName = division.getText();
+            String groupName = group.getText();
+            String courseName = course.getText();
+
+            Booking booking = new Booking();
+            BookingDao bookingDao = new BookingDao();
+            Gson gson = new Gson();
+            booking.setId(nextBookingId);
+            booking.setStudentId(Constant.studentId);
+            booking.setDivisionId(DivisionDao.getDivisionByName(diviSonName).getId());
+            booking.setGroupId(GroupDao.getGroupByName(groupName).getId());
+            booking.setCourseId(CourseDao.getCourseByName(courseName).getId());
+            booking.setAmount(Double.parseDouble(amount.getText()));
+            booking.setDate(date);
+            booking.setDescription(desc.getText());
+            bookingDao.save(booking);
+            System.out.println(gson.toJson(booking));
+            System.out.println(gson.toJson(bookingDao.getAllBookingList()));
+            System.out.println(gson.toJson(BookingAvailabilityDao.getOne(booking.getDate(),
+                    booking.getDivisionId(),
+                    booking.getGroupId(),
+                    booking.getCourseId())));
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+        int selectedRowIndex = jTable1.getSelectedRow();
+        int nextBookingId = BookingDao.getAllBookingList().size() + 1;
+
+        bookingId.setText(Integer.toString(nextBookingId));
+        studentId.setText(Integer.toString(Constant.studentId));
+        division.setText(defaultTableModel.getValueAt(selectedRowIndex, 1).toString());
+        group.setText(defaultTableModel.getValueAt(selectedRowIndex, 2).toString());
+        course.setText(defaultTableModel.getValueAt(selectedRowIndex, 3).toString());
+        amount.setText(defaultTableModel.getValueAt(selectedRowIndex, 5).toString());
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void clearTable() {
         jComboBox1.setSelectedItem("Select");
         jComboBox2.setSelectedItem("Select");
         jComboBox3.setSelectedItem("Select");
+        bookingId.setText("");
+        studentId.setText("");
+        division.setText("");
+        group.setText("");
+        course.setText("");
+        amount.setText("");
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.getDataVector().removeAllElements();
         dm.fireTableDataChanged();
         jDateChooser2.setDate(null);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -262,14 +495,30 @@ public class BookingCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amount;
+    private javax.swing.JTextField bookingId;
+    private javax.swing.JTextField course;
+    private javax.swing.JTextArea desc;
+    private javax.swing.JTextField division;
+    private javax.swing.JTextField group;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField studentId;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,7 @@
 package com.system.model;
 
 public class BookingAvailability {
-    
+
     private String date;
     private int divisionId;
     private int groupId;

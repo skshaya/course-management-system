@@ -89,4 +89,9 @@ public class StudentDao extends CoreCollectionRepository implements CoreReposito
         }
         return authDto;
     }
+    
+    public static List<Student> test (){
+        return StudentDao.students;
+             
+    }
 }

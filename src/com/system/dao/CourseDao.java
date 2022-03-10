@@ -77,4 +77,11 @@ public class CourseDao extends CoreCollectionRepository implements CoreRepositor
     public static List<Course> loadToComboBox() {
         return CourseDao.courses;
     }
+
+    public static Course getCourseByName(String name) {
+        return CourseDao.courses
+                .stream()
+                .filter(course -> course.getName().equals(name))
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
+    }
 }

@@ -37,4 +37,11 @@ public class DivisionDao extends CoreCollectionRepository {
     public static List<Division> loadToComboBox() {
         return DivisionDao.divisions;
     }
+
+    public static Division getDivisionByName(String name) {
+        return DivisionDao.divisions
+                .stream()
+                .filter(division -> division.getName().equals(name))
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
+    }
 }

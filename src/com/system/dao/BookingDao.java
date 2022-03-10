@@ -16,9 +16,9 @@ public class BookingDao implements CoreRepository {
     @Override
     public List<?> getAll() {
         bookings = Stream.of(
-                new Booking(1, 1, 1, 1, 1, 1000.00, "Booked", 1, "Desc"),
-                new Booking(2, 1, 2, 1, 1, 1000.00, "Booked", 1, "Desc"),
-                new Booking(3, 3, 1, 1, 1, 1000.00, "Booked", 1, "Desc"))
+                new Booking(1, 1, 1, 1, 1, 1000.00, "2021-03-05", "Booked", "Desc"),
+                new Booking(2, 2, 2, 1, 1, 1000.00, "2021-03-06", "Booked", "Desc"),
+                new Booking(3, 3, 1, 1, 2, 1000.00, "2021-03-06", "Booked", "Desc"))
                 .collect(Collectors.toList());
         return bookings;
     }
@@ -33,7 +33,7 @@ public class BookingDao implements CoreRepository {
 
     @Override
     public Booking getOne(int id) {
-         return BookingDao.bookings
+        return BookingDao.bookings
                 .stream()
                 .filter(booking -> booking.getId() == id)
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
@@ -61,9 +61,10 @@ public class BookingDao implements CoreRepository {
         booking.setGroupId(bookingObj.getGroupId());
         booking.setCourseId(bookingObj.getCourseId());
         booking.setAmount(bookingObj.getAmount());
+        booking.setDate(bookingObj.getDate());
         booking.setStatus(bookingObj.getStatus());
-        booking.setPaymentMasterId(bookingObj.getPaymentMasterId());
         booking.setDescription(bookingObj.getDescription());
+        BookingAvailabilityDao.updateBookingAvailability(booking.getDate(), booking.getDivisionId(), booking.getGroupId(), booking.getCourseId());
     }
 
     public static List<Booking> getAllBookingList() {

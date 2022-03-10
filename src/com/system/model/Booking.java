@@ -1,7 +1,7 @@
 package com.system.model;
 
 public class Booking {
-   
+
     private int id;
     private int studentId;
     private int divisionId;
@@ -9,13 +9,13 @@ public class Booking {
     private int courseId;
     private double amount;
     private String status;
-    private int paymentMasterId;
+    private String date;
     private String description;
 
     public Booking() {
     }
 
-    public Booking(int id, int studentId, int divisionId, int groupId, int courseId, double amount, String status, int paymentMasterId, String description) {
+    public Booking(int id, int studentId, int divisionId, int groupId, int courseId, double amount, String status, String date, String description) {
         this.id = id;
         this.studentId = studentId;
         this.divisionId = divisionId;
@@ -23,9 +23,9 @@ public class Booking {
         this.courseId = courseId;
         this.amount = amount;
         this.status = status;
-        this.paymentMasterId = paymentMasterId;
+        this.date = date;
         this.description = description;
-    } 
+    }
 
     /**
      * @return the id
@@ -96,7 +96,7 @@ public class Booking {
     public void setCourseId(int courseId) {
         this.courseId = courseId;
     }
-    
+
     /**
      * @return the amount
      */
@@ -126,17 +126,17 @@ public class Booking {
     }
 
     /**
-     * @return the paymentMasterId
+     * @return the date
      */
-    public int getPaymentMasterId() {
-        return paymentMasterId;
+    public String getDate() {
+        return date;
     }
 
     /**
-     * @param paymentMasterId the paymentMasterId to set
+     * @param date the date to set
      */
-    public void setPaymentMasterId(int paymentMasterId) {
-        this.paymentMasterId = paymentMasterId;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     /**

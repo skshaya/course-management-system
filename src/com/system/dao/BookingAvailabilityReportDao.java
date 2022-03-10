@@ -91,7 +91,7 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
     }
 
     @Override
-    public List<BookingAvailabilityDto> filterByAll(String Date, int groupId, int divisionId, int courseId) {
+    public List<BookingAvailabilityDto> filterByAll(String Date, int divisionId, int groupId, int courseId) {
         List<BookingAvailability> bookingAvailabilitys = BookingAvailabilityDao
                 .getAllBookingAvailabilityList()
                 .stream()
@@ -121,6 +121,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
             bookingAvailabilityDto.setGroupName(groupName);
             bookingAvailabilityDto.setCourseName(coursename);
             bookingAvailabilityDto.setAvailability(bookingAvailability.getAvailability());
+            bookingAvailabilityDto.setAmount(CourseDao.findById(courseId).getFees());
+            System.out.println(CourseDao.findById(courseId).getFees());
             bookingAvailabilityDtoList.add(bookingAvailabilityDto);
         }
         return bookingAvailabilityDtoList;

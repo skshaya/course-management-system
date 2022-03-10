@@ -17,8 +17,8 @@ public class GroupDao extends CoreCollectionRepository {
     public List<Group> getAll() {
         groups = Stream.of(
                 new Group(1, "GP001", "Morning", "Desc"),
-                new Group(1, "GP001", "Afternoon", "Desc"),
-                new Group(1, "GP001", "Evening", "Desc"))
+                new Group(2, "GP001", "Afternoon", "Desc"),
+                new Group(3, "GP001", "Evening", "Desc"))
                 .collect(Collectors.toList());
         return groups;
     }
@@ -37,5 +37,12 @@ public class GroupDao extends CoreCollectionRepository {
 
     public static List<Group> loadToComboBox() {
         return GroupDao.groups;
+    }
+
+    public static Group getGroupByName(String name) {
+        return GroupDao.groups
+                .stream()
+                .filter(group -> group.getName().equals(name))
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 }

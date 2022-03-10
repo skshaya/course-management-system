@@ -7,16 +7,17 @@ public class BookingAvailabilityDto {
     private String divisionName;
     private String courseName;
     private int availability;
-
+    private double  amount;
     public BookingAvailabilityDto() {
     }
 
-    public BookingAvailabilityDto(String date, String groupName, String divisionName, String courseName, int availability) {
+    public BookingAvailabilityDto(String date, String groupName, String divisionName, String courseName, int availability, double amount) {
         this.date = date;
         this.groupName = groupName;
         this.divisionName = divisionName;
         this.courseName = courseName;
         this.availability = availability;
+        this.amount = amount;
     }
 
     /**
@@ -87,5 +88,19 @@ public class BookingAvailabilityDto {
      */
     public void setAvailability(int availability) {
         this.availability = availability;
+    }
+
+    /**
+     * @return the amount
+     */
+    public double getAmount() {
+        return amount;
+    }
+
+    /**
+     * @param amount the amount to set
+     */
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }
