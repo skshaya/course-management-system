@@ -19,5 +19,5 @@ public interface CoreReportRepository {
     public List<?> filterByDivisionAndGroupAndCourse(int divisionId, int groupId, int courseId);
 
     public List<?> filterByAll(String Date, int groupId, int divisionId, int courseId);
-    
+
 }

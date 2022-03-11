@@ -1,7 +1,7 @@
 package com.system.dto;
 
 public class BookingAvailabilityDto {
-
+    
     private String date;
     private String groupName;
     private String divisionName;

@@ -8,14 +8,14 @@ public class Booking {
     private int groupId;
     private int courseId;
     private double amount;
-    private String status;
     private String date;
+    private String status;
     private String description;
 
     public Booking() {
     }
 
-    public Booking(int id, int studentId, int divisionId, int groupId, int courseId, double amount, String status, String date, String description) {
+    public Booking(int id, int studentId, int divisionId, int groupId, int courseId, double amount, String date, String status, String description) {
         this.id = id;
         this.studentId = studentId;
         this.divisionId = divisionId;

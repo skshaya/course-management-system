@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.system.ui;
 
-import com.google.gson.Gson;
-import com.system.dao.BookingAvailabilityDao;
 import com.system.dao.BookingAvailabilityReportDao;
 import com.system.dao.BookingDao;
 import com.system.dao.CourseDao;
@@ -18,9 +11,13 @@ import com.system.model.Course;
 import com.system.model.Division;
 import com.system.model.Group;
 import com.system.utils.Constant;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,6 +34,7 @@ public class BookingCourse extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         loadDataToComboBoxes();
+        jDateChooser2.getJCalendar().setMinSelectableDate(new Date());
     }
 
     private void loadDataToComboBoxes() {
@@ -90,23 +88,30 @@ public class BookingCourse extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 50, 180, 52));
 
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 180, 52));
+
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 50, 209, 53));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("Search");
@@ -115,8 +120,10 @@ public class BookingCourse extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 50, 90, 30));
 
         jDateChooser2.setDateFormatString("yyyy-MMM-dd");
+        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(722, 50, 180, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,6 +139,12 @@ public class BookingCourse extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Availability");
+        }
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 124, 870, 123));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setText("Clear");
@@ -140,29 +153,44 @@ public class BookingCourse extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 87, 90, 30));
 
         bookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bookingId.setEnabled(false);
         bookingId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookingIdActionPerformed(evt);
             }
         });
+        jPanel1.add(bookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 286, 92, 35));
 
         studentId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        studentId.setEnabled(false);
+        jPanel1.add(studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 286, 106, 35));
 
         division.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        division.setEnabled(false);
+        jPanel1.add(division, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 286, 144, 35));
 
         group.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        group.setEnabled(false);
+        jPanel1.add(group, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 286, 144, 35));
 
         course.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        course.setEnabled(false);
+        jPanel1.add(course, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 286, 144, 35));
 
         amount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         amount.setToolTipText("");
+        amount.setEnabled(false);
+        jPanel1.add(amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 286, 144, 35));
 
         desc.setColumns(20);
         desc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         desc.setRows(5);
         jScrollPane2.setViewportView(desc);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 367, 864, 68));
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton3.setText("Book Now");
@@ -172,130 +200,45 @@ public class BookingCourse extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(819, 442, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Booking ID");
         jLabel1.setToolTipText("");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 254, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Student ID");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 254, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Division");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 254, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Group");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 254, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Course");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 254, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Amount");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 254, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Description");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 339, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(bookingId, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(29, 29, 29)
-                                    .addComponent(jLabel2)
-                                    .addGap(60, 60, 60)
-                                    .addComponent(jLabel3)
-                                    .addGap(109, 109, 109)
-                                    .addComponent(jLabel4)
-                                    .addGap(104, 104, 104)
-                                    .addComponent(jLabel5)
-                                    .addGap(111, 111, 111)
-                                    .addComponent(jLabel6)
-                                    .addGap(41, 41, 41))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(studentId, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(group, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(course, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(28, 28, 28)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(28, 28, 28)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(43, 43, 43)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(97, 97, 97))))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookingId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(group, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(course, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(3, 3, 3)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(66, Short.MAX_VALUE))
-        );
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/system/ui/Button-Close-icon.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1064, 0, 20, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -316,16 +259,15 @@ public class BookingCourse extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    private void refreshTable() {
+        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
+        dm.getDataVector().removeAllElements();
+        dm.fireTableDataChanged();
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String date = null;
+        refreshTable();
         BookingAvailabilityReportDao bookingAvailabilityReportDao = new BookingAvailabilityReportDao();
         List<BookingAvailabilityDto> bookingAvailabilityDto = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -338,21 +280,9 @@ public class BookingCourse extends javax.swing.JFrame {
         String courseName = jComboBox1.getSelectedItem().toString();
         String divisionName = jComboBox2.getSelectedItem().toString();
 
-        int divisionId = divisionName.equals("Saturday") ? 1
-                : (divisionName.equals("Sunday")) ? 2
-                : 0;
-
-        int groupId = groupName.equals("Morning") ? 1
-                : (groupName.equals("Afternoon")) ? 2
-                : (groupName.equals("Afternoon")) ? 3
-                : 0;
-
-        int courseId = courseName.equals("Yoha") ? 1
-                : (courseName.equals("Zumba")) ? 2
-                : (courseName.equals("Aquacise")) ? 3
-                : (courseName.equals("Box Fit")) ? 4
-                : (courseName.equals("Box Fit")) ? 5
-                : 0;
+        int divisionId = divisionName.equals("Select") ? 0 : DivisionDao.getDivisionByName(divisionName).getId();
+        int groupId = groupName.equals("Select") ? 0 : GroupDao.getGroupByName(groupName).getId();
+        int courseId = courseName.equals("Select") ? 0 : CourseDao.getCourseByName(courseName).getId();
 
         if (date != null && groupName.equals("Select") && courseName.equals("Select") && divisionName.equals("Select")) {
             bookingAvailabilityDto = bookingAvailabilityReportDao.filterByDate(date);
@@ -387,7 +317,7 @@ public class BookingCourse extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        clearTable();
+        refreshPage();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -397,34 +327,48 @@ public class BookingCourse extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(null, "Do You Really Want to Confirm Booking", "Booking Confirmation", JOptionPane.YES_NO_OPTION);
-        if (confirm == 0) {
-            int nextBookingId = BookingDao.getAllBookingList().size() + 1;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date = sdf.format(jDateChooser2.getDate());
-        
-            String diviSonName = division.getText();
-            String groupName = group.getText();
-            String courseName = course.getText();
+        if (bookingId.getText().isEmpty()
+                || division.getText().isEmpty()
+                || group.getText().isEmpty()
+                || course.getText().isEmpty()
+                || amount.getText().isEmpty()
+                || jDateChooser2.getDate() == null) {
+            JOptionPane.showMessageDialog(this, Constant.NOT_ACCEPTABLE, Constant.EMPTY, JOptionPane.ERROR_MESSAGE);
+        } else if (!division.getText().equals("Saturday") && !division.getText().equals("Sunday")) {
+            JOptionPane.showMessageDialog(this, Constant.INVALID_DAY, Constant.INVALID_DAY_FORMAT, JOptionPane.ERROR_MESSAGE);
+        } else {
+            int confirm = JOptionPane.showConfirmDialog(null, "Do You Really Want to Confirm Booking", "Booking Confirmation", JOptionPane.YES_NO_OPTION);
+            if (confirm == 0) {
+                int nextBookingId = BookingDao.getAllBookingList().size() + 1;
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String date = sdf.format(jDateChooser2.getDate());
 
-            Booking booking = new Booking();
-            BookingDao bookingDao = new BookingDao();
-            Gson gson = new Gson();
-            booking.setId(nextBookingId);
-            booking.setStudentId(Constant.studentId);
-            booking.setDivisionId(DivisionDao.getDivisionByName(diviSonName).getId());
-            booking.setGroupId(GroupDao.getGroupByName(groupName).getId());
-            booking.setCourseId(CourseDao.getCourseByName(courseName).getId());
-            booking.setAmount(Double.parseDouble(amount.getText()));
-            booking.setDate(date);
-            booking.setDescription(desc.getText());
-            bookingDao.save(booking);
-            System.out.println(gson.toJson(booking));
-            System.out.println(gson.toJson(bookingDao.getAllBookingList()));
-            System.out.println(gson.toJson(BookingAvailabilityDao.getOne(booking.getDate(),
-                    booking.getDivisionId(),
-                    booking.getGroupId(),
-                    booking.getCourseId())));
+                String diviSonName = division.getText();
+                String groupName = group.getText();
+                String courseName = course.getText();
+
+                Booking booking = new Booking();
+                BookingDao bookingDao = new BookingDao();
+                booking.setId(nextBookingId);
+                booking.setStudentId(Constant.studentId);
+                booking.setDivisionId(DivisionDao.getDivisionByName(diviSonName).getId());
+                booking.setGroupId(GroupDao.getGroupByName(groupName).getId());
+                booking.setCourseId(CourseDao.getCourseByName(courseName).getId());
+                booking.setAmount(Double.parseDouble(amount.getText()));
+                booking.setDate(date);
+                booking.setStatus("Booked");
+                booking.setDescription(desc.getText());
+
+                if (BookingDao.checkOverlapBooking(booking)) {
+                    JOptionPane.showMessageDialog(this, Constant.OVERLAP_BOOKING_FOUND, Constant.OVERLAP, JOptionPane.ERROR_MESSAGE);
+                } else {
+                    bookingDao.save(booking);
+                    JOptionPane.showMessageDialog(this, Constant.SAVE, Constant.SUCCESS, JOptionPane.INFORMATION_MESSAGE);
+                    refreshPage();
+                    MyBooking myBooking = new MyBooking();
+                    myBooking.setVisible(true);
+                }
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -440,23 +384,45 @@ public class BookingCourse extends javax.swing.JFrame {
         group.setText(defaultTableModel.getValueAt(selectedRowIndex, 2).toString());
         course.setText(defaultTableModel.getValueAt(selectedRowIndex, 3).toString());
         amount.setText(defaultTableModel.getValueAt(selectedRowIndex, 5).toString());
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) defaultTableModel.getValueAt(selectedRowIndex, 0));
+            jDateChooser2.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(BookingCourse.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void clearTable() {
-        jComboBox1.setSelectedItem("Select");
-        jComboBox2.setSelectedItem("Select");
-        jComboBox3.setSelectedItem("Select");
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void refreshPage() {
         bookingId.setText("");
         studentId.setText("");
         division.setText("");
         group.setText("");
         course.setText("");
         amount.setText("");
-        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
-        dm.getDataVector().removeAllElements();
-        dm.fireTableDataChanged();
         jDateChooser2.setDate(null);
+        clearComboBox();
+        loadDataToComboBoxes();
+        refreshTable();
+    }
+    
+    private void clearComboBox() {
+        jComboBox1.removeAllItems();
+        jComboBox2.removeAllItems();
+        jComboBox3.removeAllItems();
     }
 
     /**
@@ -504,6 +470,7 @@ public class BookingCourse extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
