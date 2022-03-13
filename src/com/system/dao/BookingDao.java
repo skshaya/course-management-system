@@ -126,11 +126,4 @@ public class BookingDao implements CoreRepository {
         Booking booking = findById(bookingId);
         booking.setStatus(status);
     }
-
-    public static void main(String[] args) {
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int month = localDate.getMonthValue();
-        System.out.println(month);
-    }
 }

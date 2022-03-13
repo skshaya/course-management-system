@@ -1,8 +1,12 @@
 package com.system.dao;
 
+import com.system.dto.MonthlyChampionCourseReportDto;
 import com.system.dto.MonthlyCourseReportDto;
+import com.system.model.Booking;
 import com.system.model.Rating;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.DoubleSummaryStatistics;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +37,7 @@ public class ReportDao {
         monthMap.put("December", 12);
     }
 
-    public static List<MonthlyCourseReportDto> getAll(int month) {
+    public static List<MonthlyCourseReportDto> generateMonthlyCourseReport(int month) {
         List<Rating> ratingList = RatingDao.getAllRating()
                 .stream()
                 .filter(rating -> rating.getMonth() == month)
@@ -41,9 +45,38 @@ public class ReportDao {
         return getNormalizedData(ratingList);
     }
 
+    public static List<MonthlyChampionCourseReportDto> generateMonthlyChampionCourseReport(int month) {
+        List<Booking> bookingList = BookingDao.getAllBookingList()
+                .stream()
+                .filter(rating -> rating.getMonth() == month)
+                .collect(Collectors.toList());
+        return getNormalizedDataForChampionReport(bookingList);
+    }
+
+    private static List<MonthlyChampionCourseReportDto> getNormalizedDataForChampionReport(List<Booking> bookingList) {
+        List<MonthlyChampionCourseReportDto> monthlyChampionCourseReportDtoList = new ArrayList<>();
+        Set<Integer> courseIds = bookingList.stream().map(Booking::getCourseId).collect(Collectors.toSet());
+        for (Integer id : courseIds) {
+            MonthlyChampionCourseReportDto monthlyChampionCourseReportDto = new MonthlyChampionCourseReportDto();
+            String courseName = CourseDao.findById(id).getName();
+            DoubleSummaryStatistics summaryStatistics = BookingDao.getAllBookingList()
+                    .stream()
+                    .filter(booking -> booking.getCourseId() == id)
+                    .mapToDouble(d -> d.getAmount())
+                    .summaryStatistics();
+
+            monthlyChampionCourseReportDto.setCourseName(courseName);
+            monthlyChampionCourseReportDto.setStatistics(summaryStatistics);
+            monthlyChampionCourseReportDtoList.add(monthlyChampionCourseReportDto);
+
+        }
+        Collections.sort(monthlyChampionCourseReportDtoList, (MonthlyChampionCourseReportDto o1, MonthlyChampionCourseReportDto o2) -> (int) (o2.getStatistics().getSum() - o1.getStatistics().getSum()));
+        return monthlyChampionCourseReportDtoList;
+    }
+
     private static List<MonthlyCourseReportDto> getNormalizedData(List<Rating> ratingList) {
 
-        List<MonthlyCourseReportDto> monthlyCourseReportDtos = new ArrayList<>();
+        List<MonthlyCourseReportDto> monthlyCourseReportDtoList = new ArrayList<>();
         Set<Integer> courseIds = ratingList.stream().map(Rating::getCourseId).collect(Collectors.toSet());
         for (Integer id : courseIds) {
             MonthlyCourseReportDto monthlyCourseReportDto = new MonthlyCourseReportDto();
@@ -51,13 +84,13 @@ public class ReportDao {
             IntSummaryStatistics summary = RatingDao.getAllRating()
                     .stream()
                     .filter(rating -> rating.getCourseId() == id)
-                    .mapToInt(d -> d.getStar())
+                    .mapToInt(i -> i.getStar())
                     .summaryStatistics();
             monthlyCourseReportDto.setCourseName(courseName);
             monthlyCourseReportDto.setAverageRating((float) summary.getAverage());
-            monthlyCourseReportDtos.add(monthlyCourseReportDto);
+            monthlyCourseReportDtoList.add(monthlyCourseReportDto);
         }
-        return monthlyCourseReportDtos;
+        return monthlyCourseReportDtoList;
     }
 
     public static Map<String, Integer> getMonthMap() {

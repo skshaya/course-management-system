@@ -6,7 +6,7 @@
 package com.system.ui;
 
 import com.system.dao.ReportDao;
-import com.system.dto.MonthlyCourseReportDto;
+import com.system.dto.MonthlyChampionCourseReportDto;
 import com.system.utils.Constant;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ASUS
  */
-public class MonthlyCourseReport extends javax.swing.JFrame {
+public class MonthlyChampionCourse extends javax.swing.JFrame {
 
     /**
-     * Creates new form MonthlyCourseReport
+     * Creates new form MonthlyChampionCourse
      */
-    public MonthlyCourseReport() {
+    public MonthlyChampionCourse() {
         initComponents();
         setLocationRelativeTo(null);
         loadCombo();
@@ -75,7 +75,7 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Course", "Average Rating"
+                "Course", "Total Revenue", "Total Enroll"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,7 +106,7 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
         });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel10.setText("Monthly Course Report");
+        jLabel10.setText("Monthly Champion Course Report");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,9 +115,9 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addGap(78, 78, 78)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(167, 167, 167)
@@ -173,7 +173,7 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,22 +185,23 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, Constant.NOT_ACCEPTABLE, Constant.EMPTY, JOptionPane.ERROR_MESSAGE);
         } else {
             String month = monthCombo.getSelectedItem().toString();
-            List<MonthlyCourseReportDto> monthlyCourseReportDto = new ArrayList<>();
+            List<MonthlyChampionCourseReportDto> monthlyChampionCourseReportDto = new ArrayList<>();
             int value = ReportDao.getMonthMap().get(month);
-            monthlyCourseReportDto = ReportDao.generateMonthlyCourseReport(value);
+            monthlyChampionCourseReportDto = ReportDao.generateMonthlyChampionCourseReport(value);
             DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-            Object rowData[] = new Object[2];
-            for (int i = 0; i < monthlyCourseReportDto.size(); i++) {
-                rowData[0] = monthlyCourseReportDto.get(i).getCourseName();
-                rowData[1] = monthlyCourseReportDto.get(i).getAverageRating();
+            Object rowData[] = new Object[3];
+            for (int i = 0; i < monthlyChampionCourseReportDto.size(); i++) {
+                rowData[0] = monthlyChampionCourseReportDto.get(i).getCourseName();
+                rowData[1] = monthlyChampionCourseReportDto.get(i).getStatistics().getSum();
+                rowData[2] = monthlyChampionCourseReportDto.get(i).getStatistics().getCount();
                 defaultTableModel.addRow(rowData);
             }
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -234,20 +235,20 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MonthlyCourseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyChampionCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MonthlyCourseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyChampionCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MonthlyCourseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyChampionCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MonthlyCourseReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MonthlyChampionCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MonthlyCourseReport().setVisible(true);
+                new MonthlyChampionCourse().setVisible(true);
             }
         });
     }
