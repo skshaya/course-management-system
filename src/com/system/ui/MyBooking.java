@@ -15,6 +15,8 @@ import com.system.utils.ResourceNotFoundException;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,13 +41,13 @@ public class MyBooking extends javax.swing.JFrame {
         loadDataToComboBoxes();
         jDateChooser2.getJCalendar().setMinSelectableDate(new Date());
     }
-
+    
     private void loadDataToComboBoxes() {
         courseCombo.addItem("Select");
         for (Course course : CourseDao.loadToComboBox()) {
             courseCombo.addItem(course.getName());
         }
-
+        
         groupCombo.addItem("Select");
         for (Group group : GroupDao.loadToComboBox()) {
             groupCombo.addItem(group.getName());
@@ -292,10 +294,10 @@ public class MyBooking extends javax.swing.JFrame {
         if (jDateChooser2.getDate() != null) {
             date = sdf.format(jDateChooser2.getDate());
         }
-
+        
         String bkId = filterBookingId.getText().isEmpty() ? "0" : filterBookingId.getText();
         int bookingId = Integer.parseInt(bkId);
-
+        
         if (bookingId > 0 && date == null) {
             studentBookingDtos = StudentBookingHistoryDao.filterByBookingId(bookingId);
         } else if (bookingId == 0 && date != null) {
@@ -305,7 +307,7 @@ public class MyBooking extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, Constant.CANT_BE_EMPTY, Constant.FAILED, JOptionPane.ERROR_MESSAGE);
         }
-
+        
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
         Object rowData[] = new Object[7];
         for (int i = 0; i < studentBookingDtos.size(); i++) {
@@ -319,7 +321,7 @@ public class MyBooking extends javax.swing.JFrame {
             defaultTableModel.addRow(rowData);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void beforeMount() {
         refreshTable();
         List<StudentBookingDto> studentBookingDtos = StudentBookingHistoryDao.getAll();
@@ -340,7 +342,7 @@ public class MyBooking extends javax.swing.JFrame {
         bookingId.setEnabled(false);
         amount.setEnabled(false);
     }
-
+    
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -388,12 +390,12 @@ public class MyBooking extends javax.swing.JFrame {
         jButton3.setEnabled(true);
         jButton5.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     private void refreshPage() {
         refreshFields();
         refreshTable();
     }
-
+    
     private void refreshFields() {
         filterBookingId.setText("");
         bookingId.setText("");
@@ -403,12 +405,12 @@ public class MyBooking extends javax.swing.JFrame {
         loadDataToComboBoxes();
         jDateChooser2.setDate(null);
     }
-
+    
     private void clearComboBox() {
         groupCombo.removeAllItems();
         courseCombo.removeAllItems();
     }
-
+    
     private void refreshTable() {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.getDataVector().removeAllElements();
@@ -432,12 +434,20 @@ public class MyBooking extends javax.swing.JFrame {
             int confirm = JOptionPane.showConfirmDialog(null, "Do You Really Want to change the booking", "Booking Confirmation", JOptionPane.YES_NO_OPTION);
             if (confirm == 0) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String date = sdf.format(jDateChooser2.getDate());
-
+                String date = sdf.format(jDateChooser2.getDate());                
+                int month = 0;
+                try {
+                    Date d = sdf.parse(date);
+                    LocalDate localDate = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    month = localDate.getMonthValue();
+                } catch (ParseException ex) {
+                    Logger.getLogger(BookingCourse.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 String diviSonName = divisionTxt.getText();
                 String groupName = groupCombo.getSelectedItem().toString();
                 String courseName = courseCombo.getSelectedItem().toString();
-
+                
                 BookingDao bookingDao = new BookingDao();
                 Booking booking = new Booking();
                 booking.setId(Integer.parseInt(bookingId.getText()));
@@ -447,9 +457,10 @@ public class MyBooking extends javax.swing.JFrame {
                 booking.setCourseId(CourseDao.getCourseByName(courseName).getId());
                 booking.setAmount(Double.parseDouble(amount.getText()));
                 booking.setDate(date);
+                booking.setMonth(month);
                 booking.setStatus(Constant.STATUS_CHANGED);
                 booking.setDescription(desc.getText());
-
+                
                 if (BookingDao.checkOverlapBookingWhenEditing(booking)) {
                     JOptionPane.showMessageDialog(this, Constant.OVERLAP_BOOKING_FOUND, Constant.OVERLAP, JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -461,7 +472,7 @@ public class MyBooking extends javax.swing.JFrame {
                     } catch (ResourceNotFoundException resourceNotFoundException) {
                         JOptionPane.showMessageDialog(this, Constant.DATE_NOT_FOUND, Constant.INVALID_DATE, JOptionPane.ERROR_MESSAGE);
                     }
-
+                    
                 }
             }
         }
@@ -476,7 +487,7 @@ public class MyBooking extends javax.swing.JFrame {
         // TODO add your handling code here:
         String fees = "";
         String courseName = courseCombo.getSelectedItem() != null ? courseCombo.getSelectedItem().toString() : "Select";
-
+        
         if (!courseName.equals("Select")) {
             fees = Double.toString(CourseDao.getCourseByName(courseName).getFees());
         }
@@ -525,7 +536,7 @@ public class MyBooking extends javax.swing.JFrame {
             int divisionId = DivisionDao.getDivisionByName(divisionTxt.getText()).getId();
             String groupName = groupCombo.getSelectedItem().toString();
             String courseName = courseCombo.getSelectedItem().toString();
-
+            
             BookingDao.updateBookingStatus(id, Constant.STATUS_CANCELLED);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String date = sdf.format(jDateChooser2.getDate());

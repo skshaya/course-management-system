@@ -13,6 +13,8 @@ import com.system.model.Group;
 import com.system.utils.Constant;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -348,6 +350,14 @@ public class BookingCourse extends javax.swing.JFrame {
                 int nextBookingId = BookingDao.getAllBookingList().size() + 1;
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String date = sdf.format(jDateChooser2.getDate());
+                int month = 0;
+                try {
+                    Date d = sdf.parse(date);
+                    LocalDate localDate = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    month = localDate.getMonthValue();
+                } catch (ParseException ex) {
+                    Logger.getLogger(BookingCourse.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 String diviSonName = division.getText();
                 String groupName = group.getText();
@@ -362,6 +372,7 @@ public class BookingCourse extends javax.swing.JFrame {
                 booking.setCourseId(CourseDao.getCourseByName(courseName).getId());
                 booking.setAmount(Double.parseDouble(amount.getText()));
                 booking.setDate(date);
+                booking.setMonth(month);
                 booking.setStatus(Constant.STATUS_BOOKED);
                 booking.setDescription(desc.getText());
 

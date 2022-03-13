@@ -4,7 +4,10 @@ import com.system.core.CoreRepository;
 import com.system.model.Booking;
 import com.system.utils.Constant;
 import com.system.utils.ResourceNotFoundException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,9 +19,9 @@ public class BookingDao implements CoreRepository {
     @Override
     public List<?> getAll() {
         bookings = Stream.of(
-                new Booking(1, 1, 1, 1, 1, 1000.00, "2022-03-12", "Booked", "Desc"),
-                new Booking(2, 2, 2, 1, 1, 1000.00, "2022-03-13", "Booked", "Desc"),
-                new Booking(3, 3, 2, 1, 2, 1000.00, "2022-03-13", "Booked", "Desc"))
+                new Booking(1, 1, 1, 1, 1, 1000.00, "2022-03-12", 3, "Booked", "Desc"),
+                new Booking(2, 2, 2, 1, 1, 1000.00, "2022-03-13", 3, "Booked", "Desc"),
+                new Booking(3, 3, 2, 1, 2, 1000.00, "2022-03-13", 3, "Booked", "Desc"))
                 .collect(Collectors.toList());
         return bookings;
     }
@@ -38,7 +41,7 @@ public class BookingDao implements CoreRepository {
 
     @Override
     public Booking getOne(int id) {
-        return findById(id); 
+        return findById(id);
     }
 
     @Override
@@ -83,6 +86,7 @@ public class BookingDao implements CoreRepository {
         booking.setCourseId(bookingObj.getCourseId());
         booking.setAmount(bookingObj.getAmount());
         booking.setDate(bookingObj.getDate());
+        booking.setMonth(bookingObj.getMonth());
         booking.setStatus(bookingObj.getStatus());
         booking.setDescription(bookingObj.getDescription());
     }
@@ -110,15 +114,23 @@ public class BookingDao implements CoreRepository {
                 && bk.getId() != booking.getId())
                 .findFirst().isPresent();
     }
-    
-    private static Booking findById(int id){
+
+    private static Booking findById(int id) {
         return BookingDao.bookings
                 .stream()
                 .filter(booking -> booking.getId() == id)
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
-    public static void updateBookingStatus(int bookingId, String status){
+
+    public static void updateBookingStatus(int bookingId, String status) {
         Booking booking = findById(bookingId);
         booking.setStatus(status);
+    }
+
+    public static void main(String[] args) {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+        System.out.println(month);
     }
 }

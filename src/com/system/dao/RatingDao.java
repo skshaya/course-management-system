@@ -17,9 +17,9 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
     @Override
     public List<?> getAll() {
         ratings = Stream.of(
-                new Rating(1, 1, 1, 4, "2022-03-12", ""),
-                new Rating(2, 2, 2, 5, "2022-03-13", "Desc"),
-                new Rating(3, 3, 3, 5, "2022-03-13", "Desc"))
+                new Rating(1, 1, 1, 1, 5, 3, "2022-03-12", "Desc"),
+                new Rating(2, 2, 2, 1, 4, 3, "2022-03-13", "Desc"),
+                new Rating(3, 3, 3, 2, 4, 3, "2022-03-13", "Desc"))
                 .collect(Collectors.toList());
         return ratings;
     }
@@ -58,6 +58,8 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
         rating.setId(ratingObj.getId());
         rating.setStudentId(ratingObj.getStudentId());
         rating.setBookingId(ratingObj.getBookingId());
+        rating.setCourseId(ratingObj.getCourseId());
+        rating.setMonth(ratingObj.getMonth());
         rating.setDate(ratingObj.getDate());
         rating.setStar(ratingObj.getStar());
         rating.setDescription(ratingObj.getDescription());
@@ -66,6 +68,10 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
     @Override
     public int getTotal() {
         return this.ratings.size();
+    }
+
+    public static List<Rating> getAllRating() {
+        return ratings;
     }
 
     public static boolean checkBookingRated(int bookingId) {

@@ -9,13 +9,14 @@ public class Booking {
     private int courseId;
     private double amount;
     private String date;
+    private int month;
     private String status;
     private String description;
 
     public Booking() {
     }
 
-    public Booking(int id, int studentId, int divisionId, int groupId, int courseId, double amount, String date, String status, String description) {
+    public Booking(int id, int studentId, int divisionId, int groupId, int courseId, double amount, String date, int month, String status, String description) {
         this.id = id;
         this.studentId = studentId;
         this.divisionId = divisionId;
@@ -24,6 +25,7 @@ public class Booking {
         this.amount = amount;
         this.status = status;
         this.date = date;
+        this.month = month;
         this.description = description;
     }
 
@@ -151,5 +153,19 @@ public class Booking {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the month
+     */
+    public int getMonth() {
+        return month;
+    }
+
+    /**
+     * @param month the month to set
+     */
+    public void setMonth(int month) {
+        this.month = month;
     }
 }

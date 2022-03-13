@@ -11,10 +11,15 @@ import com.system.dao.StudentRatingHistoryDao;
 import com.system.dto.StudentRatingDto;
 import com.system.model.Rating;
 import com.system.utils.Constant;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -333,17 +338,30 @@ public class MyRatting extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, Constant.NOT_ACCEPTABLE, Constant.EMPTY, JOptionPane.ERROR_MESSAGE);
         } else {
             RatingDao ratingDao = new RatingDao();
+            BookingDao bookingDao = new BookingDao();
             Rating rating = new Rating();
             SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
             String currentDate = sdformat.format(new Date());
+
+            int month = 0;
+            try {
+                Date date = sdformat.parse(currentDate);
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                month = localDate.getMonthValue();
+            } catch (ParseException ex) {
+                Logger.getLogger(BookingCourse.class.getName()).log(Level.ALL.SEVERE, null, ex);
+            }
+
             int id = Integer.parseInt(bookingId.getText());
             int star = Integer.parseInt(ratingCombo.getSelectedItem().toString());
             String description = desc.getText();
             rating.setId(ratingDao.getTotal() + 1);
             rating.setBookingId(id);
             rating.setStudentId(Constant.studentId);
+            rating.setCourseId(bookingDao.getOne(id).getCourseId());
             rating.setStar(star);
             rating.setDate(currentDate);
+            rating.setMonth(month);
             rating.setDescription(description);
             ratingDao.save(rating);
             BookingDao.updateBookingStatus(id, Constant.STATUS_ATTENDED);
@@ -365,9 +383,19 @@ public class MyRatting extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, Constant.NOT_ACCEPTABLE, Constant.EMPTY, JOptionPane.ERROR_MESSAGE);
         } else {
             RatingDao ratingDao = new RatingDao();
+            BookingDao bookingDao = new BookingDao();
             Rating rating = new Rating();
             SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
             String currentDate = sdformat.format(new Date());
+            int month = 0;
+            try {
+                Date date = sdformat.parse(currentDate);
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                month = localDate.getMonthValue();
+            } catch (ParseException ex) {
+                Logger.getLogger(BookingCourse.class.getName()).log(Level.ALL.SEVERE, null, ex);
+            }
+            
             int id = Integer.parseInt(bookingId.getText());
             int star = Integer.parseInt(ratingCombo.getSelectedItem().toString());
             String description = desc.getText();
@@ -376,7 +404,9 @@ public class MyRatting extends javax.swing.JFrame {
             rating.setBookingId(id);
             rating.setStudentId(Constant.studentId);
             rating.setStar(star);
+            rating.setCourseId(bookingDao.getOne(id).getCourseId());
             rating.setDate(currentDate);
+            rating.setMonth(month);
             rating.setDescription(description);
             ratingDao.update(rating);
             JOptionPane.showMessageDialog(this, Constant.UPDATE, Constant.SUCCESS, JOptionPane.INFORMATION_MESSAGE);
