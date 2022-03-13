@@ -41,17 +41,17 @@ public class BookingCourse extends javax.swing.JFrame {
 
     private void loadDataToComboBoxes() {
         jComboBox2.addItem("Select");
-        for (Division division : DivisionDao.loadToComboBox()) {
+        for (Division division : DivisionDao.findAll()) {
             jComboBox2.addItem(division.getName());
         }
 
         jComboBox1.addItem("Select");
-        for (Course course : CourseDao.loadToComboBox()) {
+        for (Course course : CourseDao.findAll()) {
             jComboBox1.addItem(course.getName());
         }
 
         jComboBox3.addItem("Select");
-        for (Group group : GroupDao.loadToComboBox()) {
+        for (Group group : GroupDao.findAll()) {
             jComboBox3.addItem(group.getName());
         }
     }

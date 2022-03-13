@@ -42,7 +42,7 @@ public class ReportDao {
                 .stream()
                 .filter(rating -> rating.getMonth() == month)
                 .collect(Collectors.toList());
-        return getNormalizedData(ratingList);
+        return getNormalizedDataForMonthlyCourseReport(ratingList);
     }
 
     public static List<MonthlyChampionCourseReportDto> generateMonthlyChampionCourseReport(int month) {
@@ -74,7 +74,7 @@ public class ReportDao {
         return monthlyChampionCourseReportDtoList;
     }
 
-    private static List<MonthlyCourseReportDto> getNormalizedData(List<Rating> ratingList) {
+    private static List<MonthlyCourseReportDto> getNormalizedDataForMonthlyCourseReport(List<Rating> ratingList) {
 
         List<MonthlyCourseReportDto> monthlyCourseReportDtoList = new ArrayList<>();
         Set<Integer> courseIds = ratingList.stream().map(Rating::getCourseId).collect(Collectors.toSet());

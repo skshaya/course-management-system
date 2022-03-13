@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DivisionDao extends CoreCollectionRepository {
+public class DivisionDao implements CoreCollectionRepository {
 
     private static List<Division> divisions = new ArrayList<>();
 
@@ -22,11 +22,6 @@ public class DivisionDao extends CoreCollectionRepository {
         return divisions;
     }
 
-    @Override
-    public int getTotal() {
-        return DivisionDao.divisions.size();
-    }
-
     public static Division findById(int id) {
         return DivisionDao.divisions
                 .stream()
@@ -34,7 +29,7 @@ public class DivisionDao extends CoreCollectionRepository {
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 
-    public static List<Division> loadToComboBox() {
+    public static List<Division> findAll() {
         return DivisionDao.divisions;
     }
 

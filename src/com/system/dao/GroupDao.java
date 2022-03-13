@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class GroupDao extends CoreCollectionRepository {
+public class GroupDao implements CoreCollectionRepository {
 
     private static List<Group> groups = new ArrayList<>();
 
@@ -23,11 +23,6 @@ public class GroupDao extends CoreCollectionRepository {
         return groups;
     }
 
-    @Override
-    public int getTotal() {
-        return GroupDao.groups.size();
-    }
-
     public static Group findById(int id) {
         return GroupDao.groups
                 .stream()
@@ -35,7 +30,7 @@ public class GroupDao extends CoreCollectionRepository {
                 .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 
-    public static List<Group> loadToComboBox() {
+    public static List<Group> findAll() {
         return GroupDao.groups;
     }
 

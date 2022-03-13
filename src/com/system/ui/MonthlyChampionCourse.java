@@ -150,10 +150,11 @@ public class MonthlyChampionCourse extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(2, 2, 2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(monthCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -184,6 +185,7 @@ public class MonthlyChampionCourse extends javax.swing.JFrame {
         if (monthCombo.getSelectedItem().toString().equals("Select")) {
             JOptionPane.showMessageDialog(this, Constant.NOT_ACCEPTABLE, Constant.EMPTY, JOptionPane.ERROR_MESSAGE);
         } else {
+            refreshTable();
             String month = monthCombo.getSelectedItem().toString();
             List<MonthlyChampionCourseReportDto> monthlyChampionCourseReportDto = new ArrayList<>();
             int value = ReportDao.getMonthMap().get(month);
@@ -208,11 +210,14 @@ public class MonthlyChampionCourse extends javax.swing.JFrame {
 
         monthCombo.removeAllItems();
         loadCombo();
+        refreshTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void refreshTable() {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.getDataVector().removeAllElements();
         dm.fireTableDataChanged();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);

@@ -3,7 +3,9 @@ package com.system.dao;
 import com.system.core.CoreReportRepository;
 import com.system.dto.BookingAvailabilityDto;
 import com.system.model.BookingAvailability;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
                 .getAllBookingAvailabilityList()
                 .stream()
                 .filter(availability -> availability.getGroupId() == groupId
-                && availability.getAvailability() != 0)
+                && availability.getAvailability() != 0
+                && availability.getDateAsObject().compareTo(availability.getCurrentDateAsObject()) != -1)
                 .collect(Collectors.toList());
         return getNormalizedData(bookingAvailabilitys);
     }
@@ -37,7 +40,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
                 .getAllBookingAvailabilityList()
                 .stream()
                 .filter(availability -> availability.getDivisionId() == divisionId
-                && availability.getAvailability() != 0)
+                && availability.getAvailability() != 0
+                && availability.getDateAsObject().compareTo(availability.getCurrentDateAsObject()) != -1)
                 .collect(Collectors.toList());
         return getNormalizedData(bookingAvailabilitys);
     }
@@ -48,7 +52,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
                 .getAllBookingAvailabilityList()
                 .stream()
                 .filter(availability -> availability.getCourseId() == courseId
-                && availability.getAvailability() != 0)
+                && availability.getAvailability() != 0
+                && availability.getDateAsObject().compareTo(availability.getCurrentDateAsObject()) != -1)
                 .collect(Collectors.toList());
         return getNormalizedData(bookingAvailabilitys);
     }
@@ -60,7 +65,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
                 .stream()
                 .filter(availability -> availability.getDivisionId() == divisionId
                 && availability.getGroupId() == groupId
-                && availability.getAvailability() != 0)
+                && availability.getAvailability() != 0
+                && availability.getDateAsObject().compareTo(availability.getCurrentDateAsObject()) != -1)
                 .collect(Collectors.toList());
         return getNormalizedData(bookingAvailabilitys);
     }
@@ -72,7 +78,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
                 .stream()
                 .filter(availability -> availability.getDivisionId() == divisionId
                 && availability.getCourseId() == courseId
-                && availability.getAvailability() != 0)
+                && availability.getAvailability() != 0
+                && availability.getDateAsObject().compareTo(availability.getCurrentDateAsObject()) != -1)
                 .collect(Collectors.toList());
         return getNormalizedData(bookingAvailabilitys);
     }
@@ -85,7 +92,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
                 .filter(availability -> availability.getDivisionId() == divisionId
                 && availability.getGroupId() == groupId
                 && availability.getCourseId() == courseId
-                && availability.getAvailability() != 0)
+                && availability.getAvailability() != 0
+                && availability.getDateAsObject().compareTo(availability.getCurrentDateAsObject()) != -1)
                 .collect(Collectors.toList());
         return getNormalizedData(bookingAvailabilitys);
     }
@@ -98,7 +106,8 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
                 .filter(availability -> availability.getDate().equals(Date)
                 && availability.getGroupId() == groupId
                 && availability.getDivisionId() == divisionId
-                && availability.getCourseId() == courseId && availability.getAvailability() != 0)
+                && availability.getCourseId() == courseId && availability.getAvailability() != 0
+                && availability.getDateAsObject().compareTo(availability.getCurrentDateAsObject()) != -1)
                 .collect(Collectors.toList());
         return getNormalizedData(bookingAvailabilitys);
     }

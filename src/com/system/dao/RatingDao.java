@@ -1,6 +1,5 @@
 package com.system.dao;
 
-import com.system.core.CoreCollectionRepository;
 import com.system.core.CoreRepository;
 import com.system.model.Rating;
 import com.system.utils.Constant;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class RatingDao extends CoreCollectionRepository implements CoreRepository {
+public class RatingDao  implements CoreRepository {
 
     private static List<Rating> ratings = new ArrayList<>();
 
@@ -63,11 +62,6 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
         rating.setDate(ratingObj.getDate());
         rating.setStar(ratingObj.getStar());
         rating.setDescription(ratingObj.getDescription());
-    }
-
-    @Override
-    public int getTotal() {
-        return this.ratings.size();
     }
 
     public static List<Rating> getAllRating() {

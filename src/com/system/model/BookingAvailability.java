@@ -1,5 +1,11 @@
 package com.system.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class BookingAvailability {
 
     private String date;
@@ -87,5 +93,28 @@ public class BookingAvailability {
      */
     public void setAvailability(int availability) {
         this.availability = availability;
+    }
+
+    public Date getDateAsObject() {
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = sdformat.parse(this.date);
+        } catch (ParseException ex) {
+            Logger.getLogger(BookingAvailability.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return date;
+    }
+
+    public Date getCurrentDateAsObject() {
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = sdformat.format(new Date());
+        Date date = null;
+        try {
+            date = sdformat.parse(currentDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(BookingAvailability.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return date;
     }
 }

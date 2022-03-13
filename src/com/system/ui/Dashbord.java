@@ -5,8 +5,6 @@
  */
 package com.system.ui;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.system.dao.BookingAvailabilityDao;
 import com.system.dao.BookingDao;
 import com.system.dao.CourseDao;
@@ -28,7 +26,6 @@ public class Dashbord extends javax.swing.JFrame {
      */
     public Dashbord() {
         initComponents();
-        System.out.println(Constant.studentName);
         jLabel1.setText(Constant.studentName);
         setLocationRelativeTo(null);
 

@@ -355,7 +355,7 @@ public class MyRatting extends javax.swing.JFrame {
             int id = Integer.parseInt(bookingId.getText());
             int star = Integer.parseInt(ratingCombo.getSelectedItem().toString());
             String description = desc.getText();
-            rating.setId(ratingDao.getTotal() + 1);
+            rating.setId(ratingDao.getAllRating().size() + 1);
             rating.setBookingId(id);
             rating.setStudentId(Constant.studentId);
             rating.setCourseId(bookingDao.getOne(id).getCourseId());
@@ -395,7 +395,7 @@ public class MyRatting extends javax.swing.JFrame {
             } catch (ParseException ex) {
                 Logger.getLogger(BookingCourse.class.getName()).log(Level.ALL.SEVERE, null, ex);
             }
-            
+
             int id = Integer.parseInt(bookingId.getText());
             int star = Integer.parseInt(ratingCombo.getSelectedItem().toString());
             String description = desc.getText();

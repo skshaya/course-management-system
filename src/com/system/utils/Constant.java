@@ -1,6 +1,6 @@
 package com.system.utils;
 
-public class Constant {
+public final class Constant {
 
     public static final int MAX_RATE = 5;
     public static final String STATUS_BOOKED = "Booked";
@@ -13,6 +13,8 @@ public class Constant {
     public static final String LOGIN_SUCCESS = "Login Success!";
     public static final String OVERLAP_BOOKING_FOUND = "You already booked this slot. Please check my bookings";
     public static final String OVERLAP = "Overlapping Found";
+    public static final String BOOKING_FULL = "Booking full!";
+    public static final String BOOKING_NOT_AVAILABLE = "Booking not available, Please book another course";
     public static final String DATE_NOT_FOUND = "Please Check the date";
     public static final String INVALID_DATE = "Date not found";
     public static final String INVALID_DAY = "Please select saturday or sunday only";
