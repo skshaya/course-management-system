@@ -4,7 +4,7 @@ public class StudentBookingDto extends BookingDto {
 
     private int id;
     private String date;
-
+   
     /**
      * @return the id
      */

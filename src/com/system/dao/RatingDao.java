@@ -17,9 +17,9 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
     @Override
     public List<?> getAll() {
         ratings = Stream.of(
-                new Rating(1, 1, 1, 4, "2022-01-01", "Desc"),
-                new Rating(2, 1, 1, 5, "2022-02-01", "Desc"),
-                new Rating(3, 1, 1, 5, "2022-03-01", "Desc"))
+                new Rating(1, 1, 1, 4, "2022-03-12", ""),
+                new Rating(2, 2, 2, 5, "2022-03-13", "Desc"),
+                new Rating(3, 3, 3, 5, "2022-03-13", "Desc"))
                 .collect(Collectors.toList());
         return ratings;
     }
@@ -66,5 +66,17 @@ public class RatingDao extends CoreCollectionRepository implements CoreRepositor
     @Override
     public int getTotal() {
         return this.ratings.size();
+    }
+
+    public static boolean checkBookingRated(int bookingId) {
+        return ratings.stream()
+                .filter(rate -> rate.getBookingId() == bookingId && rate.getStudentId() == Constant.studentId)
+                .findFirst().isPresent();
+    }
+
+    public static Rating getRatingByBookingId(int bookingId) {
+        return ratings.stream()
+                .filter(rate -> rate.getBookingId() == bookingId && rate.getStudentId() == Constant.studentId)
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
     }
 }

@@ -38,10 +38,7 @@ public class BookingDao implements CoreRepository {
 
     @Override
     public Booking getOne(int id) {
-        return BookingDao.bookings
-                .stream()
-                .filter(booking -> booking.getId() == id)
-                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
+        return findById(id); 
     }
 
     @Override
@@ -99,7 +96,8 @@ public class BookingDao implements CoreRepository {
                 .filter(bk -> bk.getDate().equals(booking.getDate())
                 && bk.getDivisionId() == booking.getDivisionId()
                 && bk.getGroupId() == booking.getGroupId()
-                && bk.getStudentId() == booking.getStudentId())
+                && bk.getStudentId() == booking.getStudentId()
+                && !bk.getStatus().equals(Constant.STATUS_CANCELLED))
                 .findFirst().isPresent();
     }
 
@@ -111,5 +109,16 @@ public class BookingDao implements CoreRepository {
                 && bk.getStudentId() == booking.getStudentId()
                 && bk.getId() != booking.getId())
                 .findFirst().isPresent();
+    }
+    
+    private static Booking findById(int id){
+        return BookingDao.bookings
+                .stream()
+                .filter(booking -> booking.getId() == id)
+                .findFirst().orElseThrow(() -> new ResourceNotFoundException(Constant.RECORD_NOT_FOUND));
+    }
+    public static void updateBookingStatus(int bookingId, String status){
+        Booking booking = findById(bookingId);
+        booking.setStatus(status);
     }
 }

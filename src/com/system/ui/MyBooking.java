@@ -1,5 +1,6 @@
 package com.system.ui;
 
+import com.system.dao.BookingAvailabilityDao;
 import com.system.dao.BookingDao;
 import com.system.dao.CourseDao;
 import com.system.dao.DivisionDao;
@@ -86,8 +87,11 @@ public class MyBooking extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         divisionTxt = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -99,7 +103,7 @@ public class MyBooking extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(897, 41, 90, 36));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, -1, 36));
 
         jDateChooser2.setDateFormatString("yyyy-MMM-dd");
         jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -112,14 +116,14 @@ public class MyBooking extends javax.swing.JFrame {
                 jDateChooser2VetoableChange(evt);
             }
         });
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 47, 234, 50));
+        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 234, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Date", "Division", "Group", "Course", "Amount"
+                "Id", "Date", "Division", "Group", "Course", "Amount", "Status"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,7 +179,7 @@ public class MyBooking extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Booking Date");
         jLabel1.setToolTipText("");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Student ID");
@@ -202,7 +206,7 @@ public class MyBooking extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
         filterBookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(filterBookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 47, 162, 50));
+        jPanel1.add(filterBookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 162, 50));
 
         groupCombo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(groupCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 160, 35));
@@ -237,7 +241,7 @@ public class MyBooking extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Booking ID");
         jLabel9.setToolTipText("");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         divisionTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         divisionTxt.setEnabled(false);
@@ -248,21 +252,33 @@ public class MyBooking extends javax.swing.JFrame {
         });
         jPanel1.add(divisionTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 130, 35));
 
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton5.setText("Cancel");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(793, 410, 100, -1));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel10.setText("My Booking List");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 200, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -291,7 +307,7 @@ public class MyBooking extends javax.swing.JFrame {
         }
 
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[6];
+        Object rowData[] = new Object[7];
         for (int i = 0; i < studentBookingDtos.size(); i++) {
             rowData[0] = studentBookingDtos.get(i).getId();
             rowData[1] = studentBookingDtos.get(i).getDate();
@@ -299,6 +315,7 @@ public class MyBooking extends javax.swing.JFrame {
             rowData[3] = studentBookingDtos.get(i).getGroupName();
             rowData[4] = studentBookingDtos.get(i).getCourseName();
             rowData[5] = studentBookingDtos.get(i).getAmount();
+            rowData[6] = studentBookingDtos.get(i).getStatus();
             defaultTableModel.addRow(rowData);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -307,7 +324,7 @@ public class MyBooking extends javax.swing.JFrame {
         refreshTable();
         List<StudentBookingDto> studentBookingDtos = StudentBookingHistoryDao.getAll();
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[6];
+        Object rowData[] = new Object[7];
         for (int i = 0; i < studentBookingDtos.size(); i++) {
             rowData[0] = studentBookingDtos.get(i).getId();
             rowData[1] = studentBookingDtos.get(i).getDate();
@@ -315,6 +332,7 @@ public class MyBooking extends javax.swing.JFrame {
             rowData[3] = studentBookingDtos.get(i).getGroupName();
             rowData[4] = studentBookingDtos.get(i).getCourseName();
             rowData[5] = studentBookingDtos.get(i).getAmount();
+            rowData[6] = studentBookingDtos.get(i).getStatus();
             defaultTableModel.addRow(rowData);
         }
         studentId.setText(Integer.toString(Constant.studentId));
@@ -339,8 +357,17 @@ public class MyBooking extends javax.swing.JFrame {
             Logger.getLogger(MyBooking.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(d1.compareTo(d2));
-        if (d1.compareTo(d2) == -1) {
+        if (d1.compareTo(d2) == -1 || defaultTableModel.getValueAt(selectedRowIndex, 6).toString().equals(Constant.STATUS_CANCELLED)
+                || defaultTableModel.getValueAt(selectedRowIndex, 6).toString().equals(Constant.STATUS_ATTENDED)) {
             jButton3.setEnabled(false);
+            jButton5.setEnabled(false);
+            groupCombo.setEnabled(false);
+            courseCombo.setEnabled(false);
+        } else {
+            jButton3.setEnabled(true);
+            jButton5.setEnabled(true);
+            groupCombo.setEnabled(true);
+            courseCombo.setEnabled(true);
         }
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) defaultTableModel.getValueAt(selectedRowIndex, 1));
@@ -358,6 +385,8 @@ public class MyBooking extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         refreshPage();
+        jButton3.setEnabled(true);
+        jButton5.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void refreshPage() {
@@ -402,8 +431,6 @@ public class MyBooking extends javax.swing.JFrame {
         } else {
             int confirm = JOptionPane.showConfirmDialog(null, "Do You Really Want to change the booking", "Booking Confirmation", JOptionPane.YES_NO_OPTION);
             if (confirm == 0) {
-                // TODO Validation
-
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String date = sdf.format(jDateChooser2.getDate());
 
@@ -420,7 +447,7 @@ public class MyBooking extends javax.swing.JFrame {
                 booking.setCourseId(CourseDao.getCourseByName(courseName).getId());
                 booking.setAmount(Double.parseDouble(amount.getText()));
                 booking.setDate(date);
-                booking.setStatus("Changed");
+                booking.setStatus(Constant.STATUS_CHANGED);
                 booking.setDescription(desc.getText());
 
                 if (BookingDao.checkOverlapBookingWhenEditing(booking)) {
@@ -490,6 +517,28 @@ public class MyBooking extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_divisionTxtActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(null, Constant.CANCEL_CONFIRMATION, Constant.CANCEL, JOptionPane.YES_NO_OPTION);
+        if (confirm == 0) {
+            int id = Integer.parseInt(bookingId.getText());
+            int divisionId = DivisionDao.getDivisionByName(divisionTxt.getText()).getId();
+            String groupName = groupCombo.getSelectedItem().toString();
+            String courseName = courseCombo.getSelectedItem().toString();
+
+            BookingDao.updateBookingStatus(id, Constant.STATUS_CANCELLED);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(jDateChooser2.getDate());
+            BookingAvailabilityDao.updateBookingAvailabilityOnEditing(
+                    date,
+                    divisionId,
+                    GroupDao.getGroupByName(groupName).getId(),
+                    CourseDao.getCourseByName(courseName).getId());
+            JOptionPane.showMessageDialog(this, Constant.CANCELED, Constant.SUCCESS, JOptionPane.INFORMATION_MESSAGE);
+            beforeMount();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -537,8 +586,10 @@ public class MyBooking extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

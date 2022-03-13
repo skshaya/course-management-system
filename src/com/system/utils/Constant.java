@@ -2,6 +2,11 @@ package com.system.utils;
 
 public class Constant {
 
+    public static final int MAX_RATE = 5;
+    public static final String STATUS_BOOKED = "Booked";
+    public static final String STATUS_CHANGED = "Changed";
+    public static final String STATUS_CANCELLED = "Cancelled";
+    public static final String STATUS_ATTENDED = "Attended";
     public static final String RECORD_NOT_FOUND = "Record Not Found";
     public static final String LOGIN = "Login";
     public static final String LOGIN_FAILED = "Username or Password is incorrect!";
@@ -20,6 +25,9 @@ public class Constant {
     public static final String FAILED = "Failed";
     public static final String CANT_BE_EMPTY = "Please select date or booking Id";
     public static final String CANT_SEARCH = "Please select either date or booking Id only";
+    public static final String CANCEL_CONFIRMATION = "Do You Really Want to Cancell the booking";
+    public static final String CANCEL = "Cancelling Confirmation";
+    public static final String CANCELED = "Successfully cancelled!";
     public static int studentId;
     public static String studentName;
 }
