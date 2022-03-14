@@ -109,9 +109,7 @@ public class BookingDao implements CoreRepository {
                 new Booking(68,1, 2, 1, 3, 3000.00, "2022-02-06", 2, "Booked", "Desc"),
                 new Booking(69,9, 2, 1, 3, 3000.00, "2022-02-06", 2, "Booked", "Desc"),
                 new Booking(70,10, 2, 1, 3, 3000.00, "2022-02-06", 2, "Booked", "Desc"),
-                new Booking(71,4, 2, 1, 3, 3000.00, "2022-02-06", 2, "Booked", "Desc"),
-                
-                new Booking(3, 3, 2, 1, 2, 1000.00, "2022-01-09", 1, "Booked", "Desc"))
+                new Booking(71,4, 2, 1, 3, 3000.00, "2022-02-06", 2, "Booked", "Desc"))
                 .collect(Collectors.toList());
         return bookings;
     }

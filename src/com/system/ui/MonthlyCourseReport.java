@@ -8,6 +8,7 @@ package com.system.ui;
 import com.system.dao.ReportDao;
 import com.system.dto.MonthlyCourseReportDto;
 import com.system.utils.Constant;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +76,7 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Course", "Average Rating"
+                "Course", "Average Rating", "Round"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,16 +192,17 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
             int value = ReportDao.getMonthMap().get(month);
             monthlyCourseReportDto = ReportDao.generateMonthlyCourseReport(value);
             DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-            Object rowData[] = new Object[2];
+            Object rowData[] = new Object[3];
             for (int i = 0; i < monthlyCourseReportDto.size(); i++) {
                 rowData[0] = monthlyCourseReportDto.get(i).getCourseName();
-                rowData[1] = monthlyCourseReportDto.get(i).getAverageRating();
+                rowData[1] = monthlyCourseReportDto.get(i).getStatistics().getAverage();
+                rowData[2] = new DecimalFormat("#.#").format(monthlyCourseReportDto.get(i).getStatistics().getAverage());
                 defaultTableModel.addRow(rowData);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-     private void refreshTable() {
+    private void refreshTable() {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.getDataVector().removeAllElements();
         dm.fireTableDataChanged();

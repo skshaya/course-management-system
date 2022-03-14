@@ -74,6 +74,10 @@ public class ReportDao {
         return monthlyChampionCourseReportDtoList;
     }
 
+    public static Map<String, Integer> getMonthMap() {
+        return monthMap;
+    }
+
     private static List<MonthlyCourseReportDto> getNormalizedDataForMonthlyCourseReport(List<Rating> ratingList) {
 
         List<MonthlyCourseReportDto> monthlyCourseReportDtoList = new ArrayList<>();
@@ -81,19 +85,16 @@ public class ReportDao {
         for (Integer id : courseIds) {
             MonthlyCourseReportDto monthlyCourseReportDto = new MonthlyCourseReportDto();
             String courseName = CourseDao.findById(id).getName();
-            IntSummaryStatistics summary = RatingDao.getAllRating()
+            IntSummaryStatistics summaryStatistics = RatingDao.getAllRating()
                     .stream()
                     .filter(rating -> rating.getCourseId() == id)
                     .mapToInt(i -> i.getStar())
                     .summaryStatistics();
             monthlyCourseReportDto.setCourseName(courseName);
-            monthlyCourseReportDto.setAverageRating((float) summary.getAverage());
+            monthlyCourseReportDto.setStatistics(summaryStatistics);
             monthlyCourseReportDtoList.add(monthlyCourseReportDto);
         }
+        Collections.sort(monthlyCourseReportDtoList, (MonthlyCourseReportDto o1, MonthlyCourseReportDto o2) -> Double.compare(o2.getStatistics().getAverage(), o1.getStatistics().getAverage()));
         return monthlyCourseReportDtoList;
-    }
-
-    public static Map<String, Integer> getMonthMap() {
-        return monthMap;
     }
 }

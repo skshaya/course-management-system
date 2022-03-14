@@ -1,9 +1,11 @@
 package com.system.dto;
 
-public class MonthlyCourseReportDto {
+import java.util.IntSummaryStatistics;
 
+public class MonthlyCourseReportDto {
+    
     private String courseName;
-    private float averageRating;
+    private IntSummaryStatistics  statistics;
 
     /**
      * @return the courseName
@@ -20,16 +22,16 @@ public class MonthlyCourseReportDto {
     }
 
     /**
-     * @return the averageRating
+     * @return the statistics
      */
-    public float getAverageRating() {
-        return averageRating;
+    public IntSummaryStatistics getStatistics() {
+        return statistics;
     }
 
     /**
-     * @param averageRating the averageRating to set
+     * @param statistics the statistics to set
      */
-    public void setAverageRating(float averageRating) {
-        this.averageRating = averageRating;
+    public void setStatistics(IntSummaryStatistics statistics) {
+        this.statistics = statistics;
     }
 }
