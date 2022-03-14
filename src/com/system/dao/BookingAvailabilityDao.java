@@ -363,7 +363,7 @@ public class BookingAvailabilityDao implements CoreCollectionRepository {
                 new BookingAvailability("2022-04-17", 2, 2, 4, 4),
                 new BookingAvailability("2022-04-17", 2, 2, 5, 4),
                 // Sunday  evening 
-                new BookingAvailability("2022-04-17", 2, 3, 1, 4),
+                new BookingAvailability("2022-04-17", 2, 3, 1, 0),
                 new BookingAvailability("2022-04-17", 2, 3, 2, 4),
                 new BookingAvailability("2022-04-17", 2, 3, 3, 4),
                 new BookingAvailability("2022-04-17", 2, 3, 4, 4),

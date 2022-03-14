@@ -191,13 +191,17 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
             List<MonthlyCourseReportDto> monthlyCourseReportDto = new ArrayList<>();
             int value = ReportDao.getMonthMap().get(month);
             monthlyCourseReportDto = ReportDao.generateMonthlyCourseReport(value);
-            DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-            Object rowData[] = new Object[3];
-            for (int i = 0; i < monthlyCourseReportDto.size(); i++) {
-                rowData[0] = monthlyCourseReportDto.get(i).getCourseName();
-                rowData[1] = monthlyCourseReportDto.get(i).getStatistics().getAverage();
-                rowData[2] = new DecimalFormat("#.#").format(monthlyCourseReportDto.get(i).getStatistics().getAverage());
-                defaultTableModel.addRow(rowData);
+            if (monthlyCourseReportDto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, Constant.NO_RECORD_FOUND, Constant.NO_RECORD, JOptionPane.WARNING_MESSAGE);
+            } else {
+                DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+                Object rowData[] = new Object[3];
+                for (int i = 0; i < monthlyCourseReportDto.size(); i++) {
+                    rowData[0] = monthlyCourseReportDto.get(i).getCourseName();
+                    rowData[1] = monthlyCourseReportDto.get(i).getStatistics().getAverage();
+                    rowData[2] = new DecimalFormat("#.#").format(monthlyCourseReportDto.get(i).getStatistics().getAverage());
+                    defaultTableModel.addRow(rowData);
+                }
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

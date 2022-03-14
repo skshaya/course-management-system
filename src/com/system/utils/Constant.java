@@ -30,6 +30,8 @@ public final class Constant {
     public static final String CANCEL_CONFIRMATION = "Do You Really Want to Cancell the booking";
     public static final String CANCEL = "Cancelling Confirmation";
     public static final String CANCELED = "Successfully cancelled!";
+    public static final String NO_RECORD = "No Records!";
+    public static final String NO_RECORD_FOUND = "No Records found";
     public static int studentId;
     public static String studentName;
 }

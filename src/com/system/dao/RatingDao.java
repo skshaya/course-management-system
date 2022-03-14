@@ -66,7 +66,7 @@ public class RatingDao implements CoreRepository {
                 new Rating(36, 2, 36, 4, 4, 1, "2022-01-16", "Desc"),
                 new Rating(37, 9, 37, 4, 2, 1, "2022-01-16", "Desc"),
                 new Rating(38, 10, 38, 4, 2, 1, "2022-01-16", "Desc"),
-                new Rating(39, 0, 39, 4, 4, 1, "2022-01-16", "Desc"),
+                new Rating(39, 1, 39, 4, 4, 1, "2022-01-16", "Desc"),
                 
                 new Rating(40, 1, 40, 5, 4, 1, "2022-01-22", "Desc"),               
                 new Rating(41, 10, 41, 5, 5, 1, "2022-01-22", "Desc"),

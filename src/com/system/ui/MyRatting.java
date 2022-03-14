@@ -278,18 +278,22 @@ public class MyRatting extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, Constant.CANT_BE_EMPTY, Constant.FAILED, JOptionPane.ERROR_MESSAGE);
         }
 
-        DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[8];
-        for (int i = 0; i < studentRatingDto.size(); i++) {
-            rowData[0] = studentRatingDto.get(i).getBookingId();
-            rowData[1] = studentRatingDto.get(i).getDate();
-            rowData[2] = studentRatingDto.get(i).getDivisionName();
-            rowData[3] = studentRatingDto.get(i).getGroupName();
-            rowData[4] = studentRatingDto.get(i).getCourseName();
-            rowData[5] = studentRatingDto.get(i).getAmount();
-            rowData[6] = studentRatingDto.get(i).getRating();
-            rowData[7] = studentRatingDto.get(i).getComment();
-            defaultTableModel.addRow(rowData);
+        if (studentRatingDto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, Constant.NO_RECORD_FOUND, Constant.NO_RECORD, JOptionPane.WARNING_MESSAGE);
+        } else {
+            DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+            Object rowData[] = new Object[8];
+            for (int i = 0; i < studentRatingDto.size(); i++) {
+                rowData[0] = studentRatingDto.get(i).getBookingId();
+                rowData[1] = studentRatingDto.get(i).getDate();
+                rowData[2] = studentRatingDto.get(i).getDivisionName();
+                rowData[3] = studentRatingDto.get(i).getGroupName();
+                rowData[4] = studentRatingDto.get(i).getCourseName();
+                rowData[5] = studentRatingDto.get(i).getAmount();
+                rowData[6] = studentRatingDto.get(i).getRating();
+                rowData[7] = studentRatingDto.get(i).getComment();
+                defaultTableModel.addRow(rowData);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

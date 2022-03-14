@@ -310,16 +310,20 @@ public class BookingCourse extends javax.swing.JFrame {
             bookingAvailabilityDto = bookingAvailabilityReportDao.filterByAll(date, divisionId, groupId, courseId);
         }
 
-        DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[6];
-        for (int i = 0; i < bookingAvailabilityDto.size(); i++) {
-            rowData[0] = bookingAvailabilityDto.get(i).getDate();
-            rowData[1] = bookingAvailabilityDto.get(i).getDivisionName();
-            rowData[2] = bookingAvailabilityDto.get(i).getGroupName();
-            rowData[3] = bookingAvailabilityDto.get(i).getCourseName();
-            rowData[4] = bookingAvailabilityDto.get(i).getAvailability();
-            rowData[5] = bookingAvailabilityDto.get(i).getAmount();
-            defaultTableModel.addRow(rowData);
+        if (bookingAvailabilityDto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, Constant.NO_RECORD_FOUND, Constant.NO_RECORD, JOptionPane.WARNING_MESSAGE);
+        } else {
+            DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+            Object rowData[] = new Object[6];
+            for (int i = 0; i < bookingAvailabilityDto.size(); i++) {
+                rowData[0] = bookingAvailabilityDto.get(i).getDate();
+                rowData[1] = bookingAvailabilityDto.get(i).getDivisionName();
+                rowData[2] = bookingAvailabilityDto.get(i).getGroupName();
+                rowData[3] = bookingAvailabilityDto.get(i).getCourseName();
+                rowData[4] = bookingAvailabilityDto.get(i).getAvailability();
+                rowData[5] = bookingAvailabilityDto.get(i).getAmount();
+                defaultTableModel.addRow(rowData);
+            }
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

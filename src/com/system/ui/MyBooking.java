@@ -308,17 +308,21 @@ public class MyBooking extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, Constant.CANT_BE_EMPTY, Constant.FAILED, JOptionPane.ERROR_MESSAGE);
         }
 
-        DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[7];
-        for (int i = 0; i < studentBookingDtos.size(); i++) {
-            rowData[0] = studentBookingDtos.get(i).getId();
-            rowData[1] = studentBookingDtos.get(i).getDate();
-            rowData[2] = studentBookingDtos.get(i).getDivisionName();
-            rowData[3] = studentBookingDtos.get(i).getGroupName();
-            rowData[4] = studentBookingDtos.get(i).getCourseName();
-            rowData[5] = studentBookingDtos.get(i).getAmount();
-            rowData[6] = studentBookingDtos.get(i).getStatus();
-            defaultTableModel.addRow(rowData);
+        if (studentBookingDtos.isEmpty()) {
+            JOptionPane.showMessageDialog(this, Constant.NO_RECORD_FOUND, Constant.NO_RECORD, JOptionPane.WARNING_MESSAGE);
+        } else {
+            DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+            Object rowData[] = new Object[7];
+            for (int i = 0; i < studentBookingDtos.size(); i++) {
+                rowData[0] = studentBookingDtos.get(i).getId();
+                rowData[1] = studentBookingDtos.get(i).getDate();
+                rowData[2] = studentBookingDtos.get(i).getDivisionName();
+                rowData[3] = studentBookingDtos.get(i).getGroupName();
+                rowData[4] = studentBookingDtos.get(i).getCourseName();
+                rowData[5] = studentBookingDtos.get(i).getAmount();
+                rowData[6] = studentBookingDtos.get(i).getStatus();
+                defaultTableModel.addRow(rowData);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
