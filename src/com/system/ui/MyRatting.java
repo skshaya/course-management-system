@@ -316,6 +316,25 @@ public class MyRatting extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
         int selectedRowIndex = jTable1.getSelectedRow();
+
+        Date d1 = null, d2 = null;
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        String dbDate = defaultTableModel.getValueAt(selectedRowIndex, 1).toString();
+        String currentDate = sdformat.format(new Date());
+        try {
+            d1 = sdformat.parse(dbDate);
+            d2 = sdformat.parse(currentDate);
+        } catch (ParseException ex) {
+            Logger.getLogger(MyBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (d1.compareTo(d2) == 1) {
+            jButton3.setEnabled(false);
+            jButton5.setEnabled(false);
+        } else {
+            jButton3.setEnabled(true);
+            jButton5.setEnabled(true);
+        }
+
         bookingId.setText(defaultTableModel.getValueAt(selectedRowIndex, 0).toString());
         studentId.setText(Integer.toString(Constant.studentId));
         String rating = defaultTableModel.getValueAt(selectedRowIndex, 6).toString().equals("Review Needed") ? "Select" : defaultTableModel.getValueAt(selectedRowIndex, 6).toString();
