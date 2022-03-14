@@ -58,7 +58,6 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         usernametxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        usernametxt.setText("Ramesh");
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Login");
@@ -68,7 +67,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        passwordtxt.setText("1234");
         passwordtxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 passwordtxtKeyPressed(evt);
