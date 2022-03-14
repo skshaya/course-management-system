@@ -15,6 +15,7 @@ public class BookingAvailabilityDao implements CoreCollectionRepository {
 
     @Override
     public List<BookingAvailability> getAll() {
+        // adding mock values
         bookingAvailabilityList = Stream.of(
                 // Saturday morning ...............2022-01-01..............
                 new BookingAvailability("2022-01-01", 1, 1, 1, 0),

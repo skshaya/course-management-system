@@ -3,9 +3,7 @@ package com.system.dao;
 import com.system.core.CoreReportRepository;
 import com.system.dto.BookingAvailabilityDto;
 import com.system.model.BookingAvailability;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -114,7 +112,7 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
 
     private List<BookingAvailabilityDto> getNormalizedData(List<BookingAvailability> bookingAvailabilitys) {
         List<BookingAvailabilityDto> bookingAvailabilityDtoList = new ArrayList<>();
-        for (BookingAvailability bookingAvailability : bookingAvailabilitys) {
+        bookingAvailabilitys.forEach((BookingAvailability bookingAvailability) -> {
             BookingAvailabilityDto bookingAvailabilityDto = new BookingAvailabilityDto();
 
             int divisionId = bookingAvailability.getDivisionId();
@@ -133,7 +131,7 @@ public class BookingAvailabilityReportDao implements CoreReportRepository {
             bookingAvailabilityDto.setAmount(CourseDao.findById(courseId).getFees());
             System.out.println(CourseDao.findById(courseId).getFees());
             bookingAvailabilityDtoList.add(bookingAvailabilityDto);
-        }
+        });
         return bookingAvailabilityDtoList;
     }
 }
