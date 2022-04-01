@@ -91,6 +91,7 @@ public class MyBooking extends javax.swing.JFrame {
         divisionTxt = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -105,7 +106,7 @@ public class MyBooking extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, -1, 36));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 30, 90, 36));
 
         jDateChooser2.setDateFormatString("yyyy-MMM-dd");
         jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -125,7 +126,7 @@ public class MyBooking extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Date", "Division", "Group", "Course", "Amount", "Status"
+                "Id", "Date", "Division", "Group", "Course", "Amount", "Status", "Description"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,7 +145,7 @@ public class MyBooking extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(897, 84, 90, 36));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 70, 90, 30));
 
         bookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bookingId.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +268,15 @@ public class MyBooking extends javax.swing.JFrame {
         jLabel10.setText("My Booking List");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 200, 40));
 
+        jButton6.setBackground(new java.awt.Color(204, 255, 153));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/system/ui/Refresh-icon.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 50, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -312,7 +322,7 @@ public class MyBooking extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, Constant.NO_RECORD_FOUND, Constant.NO_RECORD, JOptionPane.WARNING_MESSAGE);
         } else {
             DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-            Object rowData[] = new Object[7];
+            Object rowData[] = new Object[8];
             for (int i = 0; i < studentBookingDtos.size(); i++) {
                 rowData[0] = studentBookingDtos.get(i).getId();
                 rowData[1] = studentBookingDtos.get(i).getDate();
@@ -321,6 +331,7 @@ public class MyBooking extends javax.swing.JFrame {
                 rowData[4] = studentBookingDtos.get(i).getCourseName();
                 rowData[5] = studentBookingDtos.get(i).getAmount();
                 rowData[6] = studentBookingDtos.get(i).getStatus();
+                rowData[7] = studentBookingDtos.get(i).getDescription();
                 defaultTableModel.addRow(rowData);
             }
         }
@@ -330,7 +341,7 @@ public class MyBooking extends javax.swing.JFrame {
         refreshTable();
         List<StudentBookingDto> studentBookingDtos = StudentBookingHistoryDao.getAll();
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-        Object rowData[] = new Object[7];
+        Object rowData[] = new Object[8];
         for (int i = 0; i < studentBookingDtos.size(); i++) {
             rowData[0] = studentBookingDtos.get(i).getId();
             rowData[1] = studentBookingDtos.get(i).getDate();
@@ -339,12 +350,15 @@ public class MyBooking extends javax.swing.JFrame {
             rowData[4] = studentBookingDtos.get(i).getCourseName();
             rowData[5] = studentBookingDtos.get(i).getAmount();
             rowData[6] = studentBookingDtos.get(i).getStatus();
+            rowData[7] = studentBookingDtos.get(i).getDescription();
             defaultTableModel.addRow(rowData);
         }
         studentId.setText(Integer.toString(Constant.studentId));
         studentId.setEnabled(false);
         bookingId.setEnabled(false);
         amount.setEnabled(false);
+        jButton3.setVisible(false);
+        jButton5.setVisible(false);
     }
 
 
@@ -368,11 +382,15 @@ public class MyBooking extends javax.swing.JFrame {
             jButton5.setEnabled(false);
             groupCombo.setEnabled(false);
             courseCombo.setEnabled(false);
+            desc.setEnabled(false);
         } else {
             jButton3.setEnabled(true);
             jButton5.setEnabled(true);
             groupCombo.setEnabled(true);
             courseCombo.setEnabled(true);
+            desc.setEnabled(true);
+            jButton3.setVisible(true);
+            jButton5.setVisible(true);
         }
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String) defaultTableModel.getValueAt(selectedRowIndex, 1));
@@ -386,6 +404,7 @@ public class MyBooking extends javax.swing.JFrame {
         groupCombo.setSelectedItem(defaultTableModel.getValueAt(selectedRowIndex, 3).toString());
         courseCombo.setSelectedItem(defaultTableModel.getValueAt(selectedRowIndex, 4).toString());
         amount.setText(defaultTableModel.getValueAt(selectedRowIndex, 5).toString());
+        desc.setText(defaultTableModel.getValueAt(selectedRowIndex, 6).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -555,6 +574,11 @@ public class MyBooking extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        beforeMount();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -603,6 +627,7 @@ public class MyBooking extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

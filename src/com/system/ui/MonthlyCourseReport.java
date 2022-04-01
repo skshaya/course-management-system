@@ -76,7 +76,7 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Course", "Average Rating", "Round"
+                "Course", "Average Rating", "Round", "Total Enroll"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -195,11 +195,12 @@ public class MonthlyCourseReport extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, Constant.NO_RECORD_FOUND, Constant.NO_RECORD, JOptionPane.WARNING_MESSAGE);
             } else {
                 DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-                Object rowData[] = new Object[3];
+                Object rowData[] = new Object[4];
                 for (int i = 0; i < monthlyCourseReportDto.size(); i++) {
                     rowData[0] = monthlyCourseReportDto.get(i).getCourseName();
                     rowData[1] = monthlyCourseReportDto.get(i).getStatistics().getAverage();
                     rowData[2] = new DecimalFormat("#.#").format(monthlyCourseReportDto.get(i).getStatistics().getAverage());
+                    rowData[3] = monthlyCourseReportDto.get(i).getStatistics().getCount();
                     defaultTableModel.addRow(rowData);
                 }
             }

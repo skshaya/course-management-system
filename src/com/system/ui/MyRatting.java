@@ -196,7 +196,7 @@ public class MyRatting extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Comments");
+        jLabel7.setText("Review");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, -1, -1));
 
         filterBookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

@@ -55,6 +55,7 @@ public class StudentBookingHistoryDao {
             studentBookingDto.setAmount(booking.getAmount());
             studentBookingDto.setDate(booking.getDate());
             studentBookingDto.setStatus(booking.getStatus());
+            studentBookingDto.setDescription(booking.getDescription());
             studentBookingDtoList.add(studentBookingDto);
         }
         return studentBookingDtoList;

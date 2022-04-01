@@ -4,6 +4,7 @@ public class StudentBookingDto extends BookingDto {
 
     private int id;
     private String date;
+    private String description;
    
     /**
      * @return the id
@@ -31,5 +32,19 @@ public class StudentBookingDto extends BookingDto {
      */
     public void setDate(String date) {
         this.date = date;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
