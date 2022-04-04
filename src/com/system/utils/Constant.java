@@ -8,6 +8,7 @@ public final class Constant {
     public static final String STATUS_CANCELLED = "Cancelled";
     public static final String STATUS_ATTENDED = "Attended";
     public static final String RECORD_NOT_FOUND = "Record Not Found";
+      public static final String RECORDS_NOT_FOUND = "Records Not Found";
     public static final String LOGIN = "Login";
     public static final String LOGIN_FAILED = "Username or Password is incorrect!";
     public static final String LOGIN_SUCCESS = "Login Success!";
@@ -20,6 +21,8 @@ public final class Constant {
     public static final String INVALID_DAY = "Please select saturday or sunday only";
     public static final String INVALID_DAY_FORMAT = "Week days not allowed!";
     public static final String NOT_ACCEPTABLE = "One or more fields looks empty please provide the valid  data!";
+    public static final String CANT_GENERATE = "Unable to generate report!";
+    public static final String GENERATED_SUCCESSFULLY = "Report generated!";
     public static final String EMPTY = "Error";
     public static final String SAVE = "Successfully Saved";
     public static final String UPDATE = "Successfully Updated!";
