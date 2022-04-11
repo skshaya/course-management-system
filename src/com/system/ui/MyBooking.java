@@ -404,7 +404,7 @@ public class MyBooking extends javax.swing.JFrame {
         groupCombo.setSelectedItem(defaultTableModel.getValueAt(selectedRowIndex, 3).toString());
         courseCombo.setSelectedItem(defaultTableModel.getValueAt(selectedRowIndex, 4).toString());
         amount.setText(defaultTableModel.getValueAt(selectedRowIndex, 5).toString());
-        desc.setText(defaultTableModel.getValueAt(selectedRowIndex, 6).toString());
+        desc.setText(defaultTableModel.getValueAt(selectedRowIndex, 7).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
