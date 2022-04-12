@@ -109,7 +109,22 @@ public class BookingDao implements CoreRepository {
                 new Booking(68,1, 2, 1, 3, 3000.00, "2022-02-06", 2, "Attended", "Desc"),
                 new Booking(69,9, 2, 1, 3, 3000.00, "2022-02-06", 2, "Attended", "Desc"),
                 new Booking(70,10, 2, 1, 3, 3000.00, "2022-02-06", 2, "Attended", "Desc"),
-                new Booking(71,4, 2, 1, 3, 3000.00, "2022-02-06", 2, "Attended", "Desc"))
+                new Booking(71,4, 2, 1, 3, 3000.00, "2022-02-06", 2, "Attended", "Desc"),
+                
+                new Booking(60,1, 1, 1, 4, 4000.00, "2022-04-02", 2, "Attended", "Desc"),
+                new Booking(61,9, 1, 1, 4, 4000.00, "2022-04-02", 2, "Attended", "Desc"),
+                new Booking(62,10, 1, 1, 4, 4000.00, "2022-04-02", 2, "Attended", "Desc"),
+                new Booking(63,5, 1, 1, 4, 4000.00, "2022-04-02", 2, "Attended", "Desc"),
+                
+                new Booking(64,2, 1, 3, 5, 5000.00, "2022-04-02", 2, "Attended", "Desc"),
+                new Booking(65,3, 1, 3, 5, 5000.00, "2022-04-02", 2, "Attended", "Desc"),
+                new Booking(66,6, 1, 3, 5, 5000.00, "2022-04-02", 2, "Attended", "Desc"),
+                new Booking(67,8, 1, 3, 5, 5000.00, "2022-04-02", 2, "Attended", "Desc"),
+                
+                new Booking(68,1, 2, 1, 3, 3000.00, "2022-04-03", 2, "Attended", "Desc"),
+                new Booking(69,9, 2, 1, 3, 3000.00, "2022-04-03", 2, "Attended", "Desc"),
+                new Booking(70,10, 2, 1, 3, 3000.00, "2022-04-03", 2, "Attended", "Desc"),
+                new Booking(71,4, 2, 1, 3, 3000.00, "2022-04-03", 2, "Attended", "Desc"))
                 .collect(Collectors.toList());
         return bookings;
     }

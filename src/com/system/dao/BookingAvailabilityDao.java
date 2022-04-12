@@ -368,7 +368,247 @@ public class BookingAvailabilityDao implements CoreCollectionRepository {
                 new BookingAvailability("2022-04-17", 2, 3, 2, 4),
                 new BookingAvailability("2022-04-17", 2, 3, 3, 4),
                 new BookingAvailability("2022-04-17", 2, 3, 4, 4),
-                new BookingAvailability("2022-04-17", 2, 3, 5, 4))
+                new BookingAvailability("2022-04-17", 2, 3, 5, 4),
+                
+                //.................................................................WEEK 9//
+                //................... 2022-04-30...........................//
+                // Saturday  morning 
+                new BookingAvailability("2022-04-30", 1, 1, 1, 4),
+                new BookingAvailability("2022-04-30", 1, 1, 2, 4),
+                new BookingAvailability("2022-04-30", 1, 1, 3, 4),
+                new BookingAvailability("2022-04-30", 1, 1, 4, 4),
+                new BookingAvailability("2022-04-30", 1, 1, 5, 4),
+                // Saturday  afternoon 
+                new BookingAvailability("2022-04-30", 1, 2, 1, 4),
+                new BookingAvailability("2022-04-30", 1, 2, 2, 4),
+                new BookingAvailability("2022-04-30", 1, 2, 3, 4),
+                new BookingAvailability("2022-04-30", 1, 2, 4, 4),
+                new BookingAvailability("2022-04-30", 1, 2, 5, 4),
+                // Saturday  evening 
+                new BookingAvailability("2022-04-30", 1, 3, 1, 0),
+                new BookingAvailability("2022-04-30", 1, 3, 2, 4),
+                new BookingAvailability("2022-04-30", 1, 3, 3, 4),
+                new BookingAvailability("2022-04-30", 1, 3, 4, 4),
+                new BookingAvailability("2022-04-30", 1, 3, 5, 4),
+                //................... 2022-05-01...........................//
+                // Sunday  morning 
+                new BookingAvailability("2022-05-01", 2, 1, 1, 4),
+                new BookingAvailability("2022-05-01", 2, 1, 2, 4),
+                new BookingAvailability("2022-05-01", 2, 1, 3, 4),
+                new BookingAvailability("2022-05-01", 2, 1, 4, 4),
+                new BookingAvailability("2022-05-01", 2, 1, 5, 4),
+                // Sunday  afternoon 
+                new BookingAvailability("2022-05-01", 2, 2, 1, 4),
+                new BookingAvailability("2022-05-01", 2, 2, 2, 4),
+                new BookingAvailability("2022-05-01", 2, 2, 3, 4),
+                new BookingAvailability("2022-05-01", 2, 2, 4, 4),
+                new BookingAvailability("2022-05-01", 2, 2, 5, 4),
+                // Sunday  evening 
+                new BookingAvailability("2022-05-01", 2, 3, 1, 0),
+                new BookingAvailability("2022-05-01", 2, 3, 2, 4),
+                new BookingAvailability("2022-05-01", 2, 3, 3, 4),
+                new BookingAvailability("2022-05-01", 2, 3, 4, 4),
+                new BookingAvailability("2022-05-01", 2, 3, 5, 4),
+                
+                //.................................................................WEEK 10//
+//................... 2022-05-07...........................//
+                // Saturday  morning 
+                new BookingAvailability("2022-05-07", 1, 1, 1, 4),
+                new BookingAvailability("2022-05-07", 1, 1, 2, 4),
+                new BookingAvailability("2022-05-07", 1, 1, 3, 4),
+                new BookingAvailability("2022-05-07", 1, 1, 4, 4),
+                new BookingAvailability("2022-05-07", 1, 1, 5, 4),
+                // Saturday  afternoon 
+                new BookingAvailability("2022-05-07", 1, 2, 1, 4),
+                new BookingAvailability("2022-05-07", 1, 2, 2, 4),
+                new BookingAvailability("2022-05-07", 1, 2, 3, 4),
+                new BookingAvailability("2022-05-07", 1, 2, 4, 4),
+                new BookingAvailability("2022-05-07", 1, 2, 5, 4),
+                // Saturday  evening 
+                new BookingAvailability("2022-05-07", 1, 3, 1, 0),
+                new BookingAvailability("2022-05-07", 1, 3, 2, 4),
+                new BookingAvailability("2022-05-07", 1, 3, 3, 4),
+                new BookingAvailability("2022-05-07", 1, 3, 4, 4),
+                new BookingAvailability("2022-05-07", 1, 3, 5, 4),
+                //................... 2022-05-08...........................//
+                // Sunday  morning 
+                new BookingAvailability("2022-05-08", 2, 1, 1, 4),
+                new BookingAvailability("2022-05-08", 2, 1, 2, 4),
+                new BookingAvailability("2022-05-08", 2, 1, 3, 4),
+                new BookingAvailability("2022-05-08", 2, 1, 4, 4),
+                new BookingAvailability("2022-05-08", 2, 1, 5, 4),
+                // Sunday  afternoon 
+                new BookingAvailability("2022-05-08", 2, 2, 1, 4),
+                new BookingAvailability("2022-05-08", 2, 2, 2, 4),
+                new BookingAvailability("2022-05-08", 2, 2, 3, 4),
+                new BookingAvailability("2022-05-08", 2, 2, 4, 4),
+                new BookingAvailability("2022-05-08", 2, 2, 5, 4),
+                // Sunday  evening 
+                new BookingAvailability("2022-05-08", 2, 3, 1, 0),
+                new BookingAvailability("2022-05-08", 2, 3, 2, 4),
+                new BookingAvailability("2022-05-08", 2, 3, 3, 4),
+                new BookingAvailability("2022-05-08", 2, 3, 4, 4),
+                new BookingAvailability("2022-05-08", 2, 3, 5, 4),
+                
+                //.................................................................WEEK 11//
+//................... 2022-05-14...........................//
+                // Saturday  morning 
+                new BookingAvailability("2022-05-14", 1, 1, 1, 4),
+                new BookingAvailability("2022-05-14", 1, 1, 2, 4),
+                new BookingAvailability("2022-05-14", 1, 1, 3, 4),
+                new BookingAvailability("2022-05-14", 1, 1, 4, 4),
+                new BookingAvailability("2022-05-14", 1, 1, 5, 4),
+                // Saturday  afternoon 
+                new BookingAvailability("2022-05-14", 1, 2, 1, 4),
+                new BookingAvailability("2022-05-14", 1, 2, 2, 4),
+                new BookingAvailability("2022-05-14", 1, 2, 3, 4),
+                new BookingAvailability("2022-05-14", 1, 2, 4, 4),
+                new BookingAvailability("2022-05-14", 1, 2, 5, 4),
+                // Saturday  evening 
+                new BookingAvailability("2022-05-14", 1, 3, 1, 0),
+                new BookingAvailability("2022-05-14", 1, 3, 2, 4),
+                new BookingAvailability("2022-05-14", 1, 3, 3, 4),
+                new BookingAvailability("2022-05-14", 1, 3, 4, 4),
+                new BookingAvailability("2022-05-14", 1, 3, 5, 4),
+                //................... 2022-05-15...........................//
+                // Sunday  morning 
+                new BookingAvailability("2022-05-15", 2, 1, 1, 4),
+                new BookingAvailability("2022-05-15", 2, 1, 2, 4),
+                new BookingAvailability("2022-05-15", 2, 1, 3, 4),
+                new BookingAvailability("2022-05-15", 2, 1, 4, 4),
+                new BookingAvailability("2022-05-15", 2, 1, 5, 4),
+                // Sunday  afternoon 
+                new BookingAvailability("2022-05-15", 2, 2, 1, 4),
+                new BookingAvailability("2022-05-15", 2, 2, 2, 4),
+                new BookingAvailability("2022-05-15", 2, 2, 3, 4),
+                new BookingAvailability("2022-05-15", 2, 2, 4, 4),
+                new BookingAvailability("2022-05-15", 2, 2, 5, 4),
+                // Sunday  evening 
+                new BookingAvailability("2022-05-15", 2, 3, 1, 0),
+                new BookingAvailability("2022-05-15", 2, 3, 2, 4),
+                new BookingAvailability("2022-05-15", 2, 3, 3, 4),
+                new BookingAvailability("2022-05-15", 2, 3, 4, 4),
+                new BookingAvailability("2022-05-15", 2, 3, 5, 4),
+                
+                //.................................................................WEEK 12//
+//................... 2022-05-21...........................//
+                // Saturday  morning 
+                new BookingAvailability("2022-05-21", 1, 1, 1, 4),
+                new BookingAvailability("2022-05-21", 1, 1, 2, 4),
+                new BookingAvailability("2022-05-21", 1, 1, 3, 4),
+                new BookingAvailability("2022-05-21", 1, 1, 4, 4),
+                new BookingAvailability("2022-05-21", 1, 1, 5, 4),
+                // Saturday  afternoon 
+                new BookingAvailability("2022-05-21", 1, 2, 1, 4),
+                new BookingAvailability("2022-05-21", 1, 2, 2, 4),
+                new BookingAvailability("2022-05-21", 1, 2, 3, 4),
+                new BookingAvailability("2022-05-21", 1, 2, 4, 4),
+                new BookingAvailability("2022-05-21", 1, 2, 5, 4),
+                // Saturday  evening 
+                new BookingAvailability("2022-05-21", 1, 3, 1, 0),
+                new BookingAvailability("2022-05-21", 1, 3, 2, 4),
+                new BookingAvailability("2022-05-21", 1, 3, 3, 4),
+                new BookingAvailability("2022-05-21", 1, 3, 4, 4),
+                new BookingAvailability("2022-05-21", 1, 3, 5, 4),
+                //................... 2022-05-22...........................//
+                // Sunday  morning 
+                new BookingAvailability("2022-05-22", 2, 1, 1, 4),
+                new BookingAvailability("2022-05-22", 2, 1, 2, 4),
+                new BookingAvailability("2022-05-22", 2, 1, 3, 4),
+                new BookingAvailability("2022-05-22", 2, 1, 4, 4),
+                new BookingAvailability("2022-05-22", 2, 1, 5, 4),
+                // Sunday  afternoon 
+                new BookingAvailability("2022-05-22", 2, 2, 1, 4),
+                new BookingAvailability("2022-05-22", 2, 2, 2, 4),
+                new BookingAvailability("2022-05-22", 2, 2, 3, 4),
+                new BookingAvailability("2022-05-22", 2, 2, 4, 4),
+                new BookingAvailability("2022-05-22", 2, 2, 5, 4),
+                // Sunday  evening 
+                new BookingAvailability("2022-05-22", 2, 3, 1, 0),
+                new BookingAvailability("2022-05-22", 2, 3, 2, 4),
+                new BookingAvailability("2022-05-22", 2, 3, 3, 4),
+                new BookingAvailability("2022-05-22", 2, 3, 4, 4),
+                new BookingAvailability("2022-05-22", 2, 3, 5, 4),
+                
+                //.................................................................WEEK 13//
+//................... 2022-05-28...........................//
+                // Saturday  morning 
+                new BookingAvailability("2022-05-28", 1, 1, 1, 4),
+                new BookingAvailability("2022-05-28", 1, 1, 2, 4),
+                new BookingAvailability("2022-05-28", 1, 1, 3, 4),
+                new BookingAvailability("2022-05-28", 1, 1, 4, 4),
+                new BookingAvailability("2022-05-28", 1, 1, 5, 4),
+                // Saturday  afternoon 
+                new BookingAvailability("2022-05-28", 1, 2, 1, 4),
+                new BookingAvailability("2022-05-28", 1, 2, 2, 4),
+                new BookingAvailability("2022-05-28", 1, 2, 3, 4),
+                new BookingAvailability("2022-05-28", 1, 2, 4, 4),
+                new BookingAvailability("2022-05-28", 1, 2, 5, 4),
+                // Saturday  evening 
+                new BookingAvailability("2022-05-28", 1, 3, 1, 0),
+                new BookingAvailability("2022-05-28", 1, 3, 2, 4),
+                new BookingAvailability("2022-05-28", 1, 3, 3, 4),
+                new BookingAvailability("2022-05-28", 1, 3, 4, 4),
+                new BookingAvailability("2022-05-28", 1, 3, 5, 4),
+                //................... 2022-05-29...........................//
+                // Sunday  morning 
+                new BookingAvailability("2022-05-29", 2, 1, 1, 4),
+                new BookingAvailability("2022-05-29", 2, 1, 2, 4),
+                new BookingAvailability("2022-05-29", 2, 1, 3, 4),
+                new BookingAvailability("2022-05-29", 2, 1, 4, 4),
+                new BookingAvailability("2022-05-29", 2, 1, 5, 4),
+                // Sunday  afternoon 
+                new BookingAvailability("2022-05-29", 2, 2, 1, 4),
+                new BookingAvailability("2022-05-29", 2, 2, 2, 4),
+                new BookingAvailability("2022-05-29", 2, 2, 3, 4),
+                new BookingAvailability("2022-05-29", 2, 2, 4, 4),
+                new BookingAvailability("2022-05-29", 2, 2, 5, 4),
+                // Sunday  evening 
+                new BookingAvailability("2022-05-29", 2, 3, 1, 0),
+                new BookingAvailability("2022-05-29", 2, 3, 2, 4),
+                new BookingAvailability("2022-05-29", 2, 3, 3, 4),
+                new BookingAvailability("2022-05-29", 2, 3, 4, 4),
+                new BookingAvailability("2022-05-29", 2, 3, 5, 4),
+                
+                //.................................................................WEEK 14//
+//................... 2022-06-04...........................//
+                // Saturday  morning 
+                new BookingAvailability("2022-06-04", 1, 1, 1, 4),
+                new BookingAvailability("2022-06-04", 1, 1, 2, 4),
+                new BookingAvailability("2022-06-04", 1, 1, 3, 4),
+                new BookingAvailability("2022-06-04", 1, 1, 4, 4),
+                new BookingAvailability("2022-06-04", 1, 1, 5, 4),
+                // Saturday  afternoon 
+                new BookingAvailability("2022-06-04", 1, 2, 1, 4),
+                new BookingAvailability("2022-06-04", 1, 2, 2, 4),
+                new BookingAvailability("2022-06-04", 1, 2, 3, 4),
+                new BookingAvailability("2022-06-04", 1, 2, 4, 4),
+                new BookingAvailability("2022-06-04", 1, 2, 5, 4),
+                // Saturday  evening 
+                new BookingAvailability("2022-06-04", 1, 3, 1, 0),
+                new BookingAvailability("2022-06-04", 1, 3, 2, 4),
+                new BookingAvailability("2022-06-04", 1, 3, 3, 4),
+                new BookingAvailability("2022-06-04", 1, 3, 4, 4),
+                new BookingAvailability("2022-06-04", 1, 3, 5, 4),
+                //................... 2022-06-05...........................//
+                // Sunday  morning 
+                new BookingAvailability("2022-06-05", 2, 1, 1, 4),
+                new BookingAvailability("2022-06-05", 2, 1, 2, 4),
+                new BookingAvailability("2022-06-05", 2, 1, 3, 4),
+                new BookingAvailability("2022-06-05", 2, 1, 4, 4),
+                new BookingAvailability("2022-06-05", 2, 1, 5, 4),
+                // Sunday  afternoon 
+                new BookingAvailability("2022-06-05", 2, 2, 1, 4),
+                new BookingAvailability("2022-06-05", 2, 2, 2, 4),
+                new BookingAvailability("2022-06-05", 2, 2, 3, 4),
+                new BookingAvailability("2022-06-05", 2, 2, 4, 4),
+                new BookingAvailability("2022-06-05", 2, 2, 5, 4),
+                // Sunday  evening 
+                new BookingAvailability("2022-06-05", 2, 3, 1, 0),
+                new BookingAvailability("2022-06-05", 2, 3, 2, 4),
+                new BookingAvailability("2022-06-05", 2, 3, 3, 4),
+                new BookingAvailability("2022-06-05", 2, 3, 4, 4),
+                new BookingAvailability("2022-06-05", 2, 3, 5, 4))
                 .collect(Collectors.toList());
         return bookingAvailabilityList;
     }
