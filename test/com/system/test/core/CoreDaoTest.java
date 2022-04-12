@@ -53,7 +53,7 @@ public class CoreDaoTest {
     @Test
     public void testGetAll() {
         List<Student> studentList = studentDao.getAll();
-        assertEquals(10, studentList.size());
+        assertEquals(11, studentList.size());
         assertTrue(studentList.get(0) instanceof Student);
     }
 
@@ -72,7 +72,7 @@ public class CoreDaoTest {
     @Test
     public void testGetAllBookingAvailabilityRecords() {
         List<BookingAvailability> bookingAvailabilitys = bookingAvailabilityDao.getAllBookingAvailabilityList();
-        assertEquals(266, bookingAvailabilitys.size());
+        assertEquals(446, bookingAvailabilitys.size());
         assertTrue(bookingAvailabilitys.get(0) instanceof BookingAvailability);
     }
 
@@ -89,7 +89,7 @@ public class CoreDaoTest {
     @Test
     public void testGetAllBooking() {
         List<Booking> booking = BookingDao.getAllBookingList();
-        assertEquals(71, booking.size());
+        assertEquals(83, booking.size());
         assertTrue(booking.get(0) instanceof Booking);
     }
 
@@ -108,7 +108,7 @@ public class CoreDaoTest {
         booking.setDescription("Test");
         Booking result = bookingDao.save(booking);
         assertTrue(result instanceof Booking);
-        assertEquals(72, BookingDao.getAllBookingList().size());
+        assertEquals(84, BookingDao.getAllBookingList().size());
     }
 
     @Test
