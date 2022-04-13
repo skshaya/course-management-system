@@ -27,6 +27,15 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/dao/ReportDao.java</file>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/normalizer/BookingNormalizer.java</file>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/dao/CourseDao.java</file>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/dto/StudentBookingDto.java</file>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/dto/MonthlyCourseReportDto.java</file>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/model/Booking.java</file>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/dto/AuthDto.java</file>
+            <file>file:/E:/MSC/SemesterB/7COM1025%20PSE/Assign/course-management-system/src/com/system/dto/BookingDto.java</file>
+        </group>
     </open-files>
 </project-private>
