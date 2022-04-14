@@ -99,6 +99,7 @@ public class MyRatting extends javax.swing.JFrame {
         ratingCombo = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -113,7 +114,7 @@ public class MyRatting extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 50, 90, 36));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 60, 90, 30));
 
         jDateChooser2.setDateFormatString("yyyy-MMM-dd");
         jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -126,7 +127,7 @@ public class MyRatting extends javax.swing.JFrame {
                 jDateChooser2VetoableChange(evt);
             }
         });
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 234, 50));
+        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 234, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,7 +153,7 @@ public class MyRatting extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 80, 90, 36));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 90, 90, 30));
 
         bookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bookingId.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +186,7 @@ public class MyRatting extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Booking Date");
         jLabel1.setToolTipText("");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Student ID");
@@ -200,7 +201,7 @@ public class MyRatting extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, -1, -1));
 
         filterBookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(filterBookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 162, 50));
+        jPanel1.add(filterBookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 162, 50));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/system/ui/Button-Close-icon.png"))); // NOI18N
@@ -219,7 +220,7 @@ public class MyRatting extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Booking ID");
         jLabel9.setToolTipText("");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
 
         jPanel1.add(ratingCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 102, 40));
 
@@ -236,21 +237,30 @@ public class MyRatting extends javax.swing.JFrame {
         jLabel10.setText("My Rating List");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 180, -1));
 
+        jButton6.setBackground(new java.awt.Color(204, 255, 153));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/system/ui/Refresh-icon.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 70, 50, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -438,6 +448,11 @@ public class MyRatting extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        beforeMount();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     private void refreshPage() {
         bookingId.setText("");
         desc.setText("");
@@ -494,6 +509,7 @@ public class MyRatting extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

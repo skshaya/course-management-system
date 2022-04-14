@@ -106,7 +106,7 @@ public class MyBooking extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 30, 90, 36));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 60, 90, 30));
 
         jDateChooser2.setDateFormatString("yyyy-MMM-dd");
         jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -119,7 +119,7 @@ public class MyBooking extends javax.swing.JFrame {
                 jDateChooser2VetoableChange(evt);
             }
         });
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 234, 50));
+        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 234, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,7 +145,7 @@ public class MyBooking extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 70, 90, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 90, 90, 30));
 
         bookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bookingId.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +182,7 @@ public class MyBooking extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Booking Date");
         jLabel1.setToolTipText("");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Student ID");
@@ -209,7 +209,7 @@ public class MyBooking extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
 
         filterBookingId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(filterBookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 162, 50));
+        jPanel1.add(filterBookingId, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 162, 50));
 
         groupCombo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(groupCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 160, 35));
@@ -244,7 +244,7 @@ public class MyBooking extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Booking ID");
         jLabel9.setToolTipText("");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, -1, -1));
 
         divisionTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         divisionTxt.setEnabled(false);
@@ -266,7 +266,7 @@ public class MyBooking extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel10.setText("My Booking List");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 200, 40));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 200, 40));
 
         jButton6.setBackground(new java.awt.Color(204, 255, 153));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/system/ui/Refresh-icon.png"))); // NOI18N
@@ -275,22 +275,23 @@ public class MyBooking extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, 50, 40));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 70, 50, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
